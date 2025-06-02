@@ -3,6 +3,7 @@ import App from "../App";
 
 import Login from "../components/Login";
 import Singup from "../components/Signup/Singup";
+import Error404 from "../components/Error404";
 
 export let router = createBrowserRouter([
     {
@@ -28,5 +29,10 @@ export let router = createBrowserRouter([
     {
         path: "/login",
         element: <Login />
+    },
+
+    {
+        path: "*",
+        element: <Error404 />
     }
 ])

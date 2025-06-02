@@ -12,14 +12,13 @@ function Singup() {
     return (
         <>
             <Navbar />
-            <section class="bg-white h-screen">
+            <section class="bg-white ">
                 <div class="grid grid-cols-1 lg:grid-cols-2">
                     <SingupLeftpart />
                     <SingupRightpart />
                 </div>
             </section>
             <Footer />
-
         </>
     )
 }

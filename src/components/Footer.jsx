@@ -55,7 +55,7 @@ const Footer = () => {
                
                 <div>
                     <h2 className="text-white font-semibold mb-2">Contact</h2>
-                    <p className="text-gray-300">7679178908</p>
+                    <p className="text-gray-300" >7679xxxxx</p>
                     <p className="text-gray-300">resumebuilder12@gmail.com</p>
                 </div>
             </div>
