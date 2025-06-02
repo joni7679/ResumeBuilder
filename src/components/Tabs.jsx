@@ -44,11 +44,11 @@ const Tabs = () => {
             case "education":
                 return <Education data={data.education} setData={(updated) => { setFormData({ ...formData, education: updated }) }} />;
             case "skills":
-                return <Skills data={data.skills} setData={(updated) => ({ ...formData, skills: updated })} />;
+                return <Skills data={data.skills} setData={(updated) => { setFormData({ ...formData, skills: updated }) }} />;
             case "work experience":
-                return <WorkEXperience data={data.WorkEXperience} setData={(updated) => ({ ...formData, WorkEXperience: updated })} />
+                return <WorkEXperience data={data.WorkEXperience} setData={(updated) => { setFormData({ ...formData, WorkEXperience: updated }) }} />
             case "projects":
-                return <Projects data={data.projects} setData={(updated) => ({ ...formData, projects: updated })} />
+                return <Projects data={data.projects} setData={(updated) => { setFormData({ ...formData, projects: updated }) }} />
             default:
                 return <PersonalInfo />;
         }
