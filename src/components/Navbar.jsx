@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { navlinkItems } from '../constants/Navlink'
 import { Link } from 'react-router-dom'
 import { HiOutlineMenu, HiX } from 'react-icons/hi';
+import { AuthContext } from '../Context/AuthContext';
 
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
+    let { user, loading, error } = useContext(AuthContext);
+    console.log("user is", user);
+
 
     return (
         <>
@@ -29,50 +33,22 @@ function Navbar() {
                             ))}
                         </div>
 
-
-                        <div className="hidden lg:flex items-center gap-3">
-                            <Link  to={`/signup`}  className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-md shadow cursor-pointer">
-                                Signup
-                            </Link>
-                            <Link className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-md shadow cursor-pointer">
-                                Login
-                            </Link>
-                        </div>
-
-
-                        <div className="lg:hidden">
-                            <button
-                                onClick={() => setMenuOpen(!menuOpen)}
-                                className="text-2xl text-gray-700 focus:outline-none"
-                            >
-                                {menuOpen ? <HiX /> : <HiOutlineMenu />}
-                            </button>
-                        </div>
-                    </div>
-
-
-                    {menuOpen && (
-                        <div className="lg:hidden mt-2 bg-white shadow rounded-md py-4 px-4 space-y-3">
-                            {navlinkItems.map((navlink, index) => (
-                                <Link
-                                    key={index}
-                                    to={navlink.path}
-                                    onClick={() => setMenuOpen(false)}
-                                    className="block text-gray-700 text-base hover:text-blue-600 transition-all"
-                                >
-                                    {navlink.link}
-                                </Link>
-                            ))}
-                            <div className="flex flex-col gap-2 pt-3">
-                                <Link className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-md shadow cursor-pointer">
+                        {! user ?
+                            <div className="hidden lg:flex items-center gap-3">
+                                <Link to={`/signup`} className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-md shadow cursor-pointer">
                                     Signup
                                 </Link>
-                                <Link className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-md shadow cursor-pointer">
+                                <Link to={`/login`} className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-md shadow cursor-pointer">
                                     Login
                                 </Link>
-                            </div>
-                        </div>
-                    )}
+                            </div> : (
+                                <>
+                                    <Link to={`/dashboard`} className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-md shadow cursor-pointer">Go To DashBoard</Link>
+                                </>
+                            )}
+
+                    </div>
+
                 </div>
             </nav>
 

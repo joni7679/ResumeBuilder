@@ -1,8 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AuthContext } from '../../Context/AuthContext';
+import { toast, ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 function LeftPart() {
+    const { user, loading, error } = useContext(AuthContext);
+    let navigate = useNavigate()
+    // checkuserlog in is not logic here
+    const checkUserisLoginIsNot = () => {
+        if (!user) {
+            toast.error("Plz Login First");
+            setTimeout(() => {
+                navigate(`/login`)
+            }, 1000);
+        }
+        
+    }
+
     return (
         <>
+
             <div>
                 <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                     Build Your Professional Resume
@@ -12,9 +29,10 @@ function LeftPart() {
                     <br />
                     Choose from multiple templates and download your resume as a PDF.
                 </p>
-                <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md shadow cursor-pointer">
+                <button onClick={checkUserisLoginIsNot} className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md shadow cursor-pointer">
                     Build Your Resume Now
                 </button>
+                <ToastContainer />
             </div>
         </>
     )
