@@ -29,7 +29,7 @@ const features = [
 
 const Features = () => {
     return (
-        <section className="py-16 px-6 sm:px-8 md:px-12 lg:px-16 bg-white text-center">
+        <section className="py-16 info px-6 sm:px-8 md:px-12 lg:px-16 bg-white text-center">
             <h2 className="text-3xl font-bold mb-12">Features</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                 {features.map((feature, index) => (

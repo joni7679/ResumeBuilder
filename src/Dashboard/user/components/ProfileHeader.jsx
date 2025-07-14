@@ -16,8 +16,6 @@ const ProfileHeader = () => {
                         <span className="text-xs px-2 py-0.5 bg-green-100 text-green-700 rounded-full">Good</span>
                     </div>
                     <p className="text-sm text-gray-500">Front-end Web Devloper</p>
-
-                 
                     <div className="flex gap-4 mt-2 text-sm text-gray-600">
                         <span className="flex items-center gap-1"><FaGithub /> GitHub</span>
                         <span className="flex items-center gap-1"><FaLinkedin /> LinkedIn</span>
@@ -26,9 +24,6 @@ const ProfileHeader = () => {
                     </div>
                 </div>
             </div>
-
-           
-           
         </div>
     );
 };

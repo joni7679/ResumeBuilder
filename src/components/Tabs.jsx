@@ -68,26 +68,34 @@ const Tabs = () => {
     }, [formData])
 
     return (
-        <div className="w-full p-4 flex items-start gap-4 flex-col md:flex-row">
-            <div className="md:w-[20%] flex flex-col gap-4 bg-gray-900 text-white p-5 rounded-xl">
-                {tabs.map((tab) => (
-                    <button
-                        key={tab.id}
-                        onClick={() => setActiveTab(tab.id)}
-                        className={`cursor-pointer border px-4 py-2 rounded-2xl transition-all duration-300 ${activeTab === tab.id
-                            ? "bg-white text-black"
-                            : "border-white text-white"
-                            }`}
-                    >
-                        {tab.label}
-                    </button>
-                ))}
-            </div>
+        <div className='w-full h-screen overflow-scroll'>
+            <div className="w-full  p-4">
+                <div className=" w-full bg-white rounded-xl p-4">
+                    <div className="w-full info flex flex-row gap-4 overflow-x-auto scrollbar-hide p-4">
+                        {tabs.map((tab) => (
+                            <button
+                                key={tab.id}
+                                onClick={() => setActiveTab(tab.id)}
+                                className={`flex-shrink-0 w-[200px] px-4 py-3 text-left cursor-pointer text-sm font-medium rounded-2xl border transition-all duration-300
+                                 ${activeTab === tab.id
+                                        ? "bg-[#E5F0FF] text-black border-blue-400"
+                                        : "bg-[#FAFCFE] text-gray-700 border-gray-200 hover:bg-blue-50"
+                                    }`}
+                            >
+                                {tab.label}
+                            </button>
+                        ))}
+                    </div>
 
-            <div className="p-4 border rounded  md:w-[60%] w-full">
-                {renderTab()}
+                </div>
+
+                <div className="w-full  bg-white rounded-xl  p-6 shadow-sm">
+                    {renderTab()}
+                </div>
             </div>
         </div>
+
+
     );
 };
 

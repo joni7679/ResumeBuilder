@@ -14,6 +14,10 @@ function LeftPart() {
                 navigate(`/login`)
             }, 1000);
         }
+        else{
+            console.log(user)
+            navigate(`dashboard/resume-Marker`)
+        }
         
     }
 

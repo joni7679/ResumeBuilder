@@ -5,7 +5,7 @@ function Education({data,setData}) {
     return (
         <>
 
-            <form  className=" mx-auto p-4 border rounded shadow-md">
+            <form  className=" mx-auto p-4  info rounded shadow-md">
                 <InputField
                     label="College Name"
                     name="college"

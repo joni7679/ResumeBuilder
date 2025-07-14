@@ -13,7 +13,7 @@ function Projects() {
     });
     return (
         <>
-            <div className="project-form-container">
+            <div className="project-form-container info">
                 <h2 className="project-form-title">Add Your Project Details</h2>
 
                 <InputField

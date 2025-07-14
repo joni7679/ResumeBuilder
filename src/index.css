@@ -1,5 +1,10 @@
 @import "tailwindcss";
-.singup-left-part .overly{
+
+.singup-left-part .overly {
     background: rgba(0, 0, 0, 0.5);
     z-index: 9;
+}
+
+.info::-webkit-scrollbar {
+    display: none;
 }

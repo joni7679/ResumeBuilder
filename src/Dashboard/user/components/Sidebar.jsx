@@ -5,8 +5,9 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../../../firebase/Firebase';
 import { AuthContext } from '../../../Context/AuthContext';
 import { sidebarlinks } from '../../../constants/sidebarlinks';
+import { MdArrowBackIos } from 'react-icons/md';
 
-const Sidebar = () => {
+const Sidebar = ({ open, setIsOpen }) => {
     const navigate = useNavigate();
     const { user, loading, error } = useContext(AuthContext);
 
@@ -27,10 +28,18 @@ const Sidebar = () => {
         history.back()
     };
 
+    // ṭoggle logic here
+    const toggleSidebar = (e) => {
+        setIsOpen(!open)
+        alert(open)
+
+    }
+
     return (
         <>
             <ToastContainer />
-            <aside className="w-64 h-screen bg-[#FAFCFE] border-r p-4">
+            <aside className="w-64 h-screen bg-[#FAFCFE] shadow-lg p-4 relative">
+                <MdArrowBackIos onClick={toggleSidebar} className='text-xl cursor-pointer absolute right-[-4%] top-1/2' />
 
                 <div className="flex items-center gap-2 mb-10">
                     <div className="bg-blue-100 p-2 rounded-full">

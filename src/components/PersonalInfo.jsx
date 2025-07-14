@@ -12,7 +12,7 @@ function PersonalInfo({ data, setData }) {
     console.log("data", data);
 
     return (
-        <div className='w-full rounded-2xl shadow-2xl p-4'>
+        <div className='w-full rounded-2xl shadow-2xl p-4 info'>
             <h1 className='text-center text-2xl font-bold mb-4'>Personal Info</h1>
             <form>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
