@@ -25,10 +25,10 @@ function LeftPart() {
         <>
 
             <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
                     Build Your Professional Resume
                 </h1>
-                <p className="text-gray-700 text-lg mb-6 leading-relaxed">
+                <p className="text-gray-400 text-lg mb-6 leading-relaxed">
                     Create a standout resume in minutes with our easy-to-use resume builder.
                     <br />
                     Choose from multiple templates and download your resume as a PDF.

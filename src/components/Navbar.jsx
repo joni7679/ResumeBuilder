@@ -12,7 +12,7 @@ function Navbar() {
 
     return (
         <>
-            <nav className="w-full bg-white shadow-lg sticky top-0 z-50">
+            <nav className="w-full bg-[#1b1f23] shadow-lg sticky top-0 z-50">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16 lg:h-20">
 
@@ -26,7 +26,7 @@ function Navbar() {
                                 <Link
                                     key={index}
                                     to={navlink.path}
-                                    className="text-gray-700 text-lg hover:text-blue-600 transition-all duration-200"
+                                    className="text-gray-200 capitalize text-lg hover:text-blue-600 transition-all duration-200"
                                 >
                                     {navlink.link}
                                 </Link>

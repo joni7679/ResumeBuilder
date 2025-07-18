@@ -9,6 +9,8 @@ function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {
@@ -27,6 +29,9 @@ function AuthProvider({ children }) {
 
         return () => unsubscribe();
     }, []);
+
+
+
 
     return (
         <AuthContext.Provider value={{ user, loading, setLoading, error, setError }}>

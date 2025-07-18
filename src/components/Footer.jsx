@@ -10,7 +10,7 @@ import {
 const Footer = () => {
     return (
         <footer className="bg-[#131010] text-white py-10">
-            <div className="container mx-auto px-4 grid md:grid-cols-4 gap-8 text-sm">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8  grid md:grid-cols-4 gap-8 text-sm">
                
                 <div>
                     <h2 className="text-orange-500 font-semibold mb-2">Resume Builder</h2>
@@ -61,7 +61,7 @@ const Footer = () => {
             </div>
 
             <div className="border-t border-gray-700 mt-10 pt-4 text-center text-gray-400 text-xs">
-                Copyright, Resume builder 2025. All rights reserved.
+               © 2025 ResumeBuilder. All rights reserved.
             </div>
         </footer>
     );
