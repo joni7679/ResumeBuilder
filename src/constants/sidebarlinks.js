@@ -6,7 +6,7 @@ export const sidebarlinks = [
     {
         id: 1,
         name: "Dashboard",
-        path: "dashboard",
+        index: true,
         icon: MdOutlineDashboard,
     },
     {

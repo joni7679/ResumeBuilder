@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { signOut } from 'firebase/auth';
@@ -10,6 +10,7 @@ import { MdArrowBackIos } from 'react-icons/md';
 const Sidebar = ({ open, setIsOpen }) => {
     const navigate = useNavigate();
     const { user, loading, error } = useContext(AuthContext);
+    const [activebar, setActivebar] = useState("");
 
     const logOut = async () => {
         try {
@@ -38,14 +39,14 @@ const Sidebar = ({ open, setIsOpen }) => {
     return (
         <>
             <ToastContainer />
-            <aside className="w-64 h-screen bg-[#FAFCFE] shadow-lg p-4 relative">
+            <aside className="w-64 h-screen bg-[#FAFCFE] shadow-lg p-4 relative overflow-scroll">
                 <MdArrowBackIos onClick={toggleSidebar} className='text-xl cursor-pointer absolute right-[-4%] top-1/2' />
 
                 <div className="flex items-center gap-2 mb-10">
                     <div className="bg-blue-100 p-2 rounded-full">
                         <div className="w-6 h-6 bg-gradient-to-tr from-blue-500 to-blue-700 rounded-full" />
                     </div>
-                    <span className="text-xl font-bold">resume.io</span>
+                    <span className="text-xl font-bold text-black">resume.bulider</span>
                 </div>
 
 
@@ -70,11 +71,12 @@ const Sidebar = ({ open, setIsOpen }) => {
                         <div key={item.id} className="grid grid-cols-1">
                             <Link
                                 to={item.path}
-                                className="mb-4 w-fit inline-block hover:bg-[#E5F0FF] p-3 rounded-md cursor-pointer"
+                                className="mb-4 flex-shrink-0 w-[200px] px-4 py-3 hover:bg-[#E5F0FF] p-3 rounded-md cursor-pointer"
                             >
-                                <div className="flex items-center gap-2 text-sm font-semibold text-gray-900">
+                                <div  className="flex items-center gap-2 text-sm font-semibold text-gray-900">
                                     {Icon && <Icon />}
                                     {item.name}
+
                                 </div>
                             </Link>
                         </div>

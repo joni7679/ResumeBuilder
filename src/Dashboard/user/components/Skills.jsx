@@ -26,7 +26,7 @@ function Skills() {
         <>
 
             <div className="w-full mx-w-md mx-auto  p-6 shadow-lg rounded-2xl mt-5">
-                <h2 className="text-2xl font-bold mb-4">Skills </h2>
+                <h2 className="text-2xl font-bold mb-4 text-black">Skills </h2>
                 <div className="flex flex-wrap gap-3">
                     {skills.map((skill, index) => (
                         <span

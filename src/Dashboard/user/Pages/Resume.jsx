@@ -8,7 +8,7 @@ import Projects from '../components/Projects'
 function Resume() {
     return (
         <>
-            <main className='w-full h-screen overflow-scroll'>
+            <main className='w-full h-screen bg-white overflow-scroll'>
                 <ProfileHeader />
                 <AboutMe />
                 <Experience />
