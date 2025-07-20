@@ -1,6 +1,7 @@
 import { MdOutlineDashboard } from "react-icons/md";
 import { FaRegFileAlt, FaBriefcase, FaUser } from "react-icons/fa";
 import { FaMarker } from "react-icons/fa6";
+import { IoIosSettings } from "react-icons/io";
 
 export const sidebarlinks = [
     {
@@ -33,4 +34,10 @@ export const sidebarlinks = [
         path: "profile",
         icon: FaUser,
     },
+    {
+        id: 6,
+        name: "Settings",
+        path: "settings",
+        icon: IoIosSettings ,
+    }
 ];

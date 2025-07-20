@@ -31,7 +31,7 @@ function MainContent() {
 
               
                 <div
-                    className={`transition-all duration-500 ease-in-out ${open ? 'w-[calc(100%-250px)]' : 'w-full'
+                    className={`transition-all   duration-500 ease-in-out ${open ? 'w-[calc(100%-250px)] px-5 py-2' : 'w-full px-5 py-2'
                         }`}
                 >
                     <Outlet />

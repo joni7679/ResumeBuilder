@@ -5,8 +5,12 @@ import Skills from './Skills';
 import WorkEXperience from './WorkEXperience';
 import Projects from './Projects';
 import { data } from 'react-router-dom';
+import { FaEye } from 'react-icons/fa';
 
 const Tabs = () => {
+
+    const [pouup, setPopUp] = useState(false);
+
     const [activeTab, setActiveTab] = useState("personal");
     const [formData, setFormData] = useState({
         personalInfo: {
@@ -34,6 +38,13 @@ const Tabs = () => {
         { id: "work experience", label: "work experience" },
         { id: "projects", label: "projects" }
     ];
+
+    // pouup logic here...
+    const poupBox = () => {
+        setPopUp(!pouup);
+        
+
+    }
 
     const renderTab = () => {
         switch (activeTab) {
@@ -68,7 +79,12 @@ const Tabs = () => {
     }, [formData])
 
     return (
-        <div className='w-full h-screen overflow-scroll'>
+        <div className='w-full h-screen overflow-scroll  relative'>
+            <button onClick={poupBox} className='px-[25px] py-[15px] rounded-md bg-blue-700 cursor-pointer'>
+                <FaEye className='text-xl' />
+
+            </button>
+            <div onClick={poupBox} className={`${pouup ? "overly absolute top-0 z-9 left-0 w-full h-full cursor-pointer" : " "} `}></div>
             <div className="w-full  p-4">
                 <div className=" w-full bg-white rounded-xl p-4">
                     <div className="w-full info flex flex-row gap-4 overflow-x-auto scrollbar-hide p-4">
@@ -89,7 +105,7 @@ const Tabs = () => {
 
                 </div>
 
-                <div className="w-full  bg-white rounded-xl  p-6 shadow-sm">
+                <div className="w-full mt-5  bg-white rounded-xl  p-6 shadow-sm">
                     {renderTab()}
                 </div>
             </div>

@@ -9,16 +9,16 @@ function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    
+
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {
                 setUser(currentUser);
-                console.log(" User found:", user);
+                console.log("User found:", currentUser); 
             } else {
                 setUser(null);
-                console.log(" No user found.");
+                console.log("No user found.");
             }
             setLoading(false);
         }, (err) => {
@@ -29,6 +29,7 @@ function AuthProvider({ children }) {
 
         return () => unsubscribe();
     }, []);
+
 
 
 

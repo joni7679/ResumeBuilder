@@ -4,27 +4,27 @@ A powerful and user-friendly **Resume Builder** web application with Firebase au
 
 ---
 
-## 🚀 Live Preview
+##  Live Preview
 
 [🔗 View Live Website](https://your-live-link.com)  
 (Replace with your deployed site link)
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
-### 🔐 Authentication
-- ✅ User Registration and Login
-- ✅ Email Verification
-- ✅ Forgot Password & Reset Password
-- ✅ Firebase Authentication integration
+###  Authentication
+-  User Registration and Login
+-  Email Verification
+-  Forgot Password & Reset Password
+-  Firebase Authentication integration
 
 ### 🧾 Resume Builder
-- ✍️ Add a personal **summary** with real-time **spelling check** and **auto suggestions**
-- 📁 Add multiple **projects** with detailed descriptions
-- 🎨 Clean & modern UI to edit resume fields
-- 📥 **Download resume** as PDF with just one click
-- 📱 Fully **responsive design** (mobile/tablet/desktop)
+-  Add a personal **summary** with real-time **spelling check** and **auto suggestions**
+-  Add multiple **projects** with detailed descriptions
+-  Clean & modern UI to edit resume fields
+-  **Download resume** as PDF with just one click
+-  Fully **responsive design** (mobile/tablet/desktop)
 
 ### 🧠 Smart Suggestions
 - Spell checking for summary and project descriptions
@@ -32,7 +32,18 @@ A powerful and user-friendly **Resume Builder** web application with Firebase au
 - Built-in error hints for better resume writing
 
 ---
+###  design View
 
+| Page | Mobile Preview |
+|------|----------------|
+| 🏠 Home | ![Home Mobile](./screenshots/home-mobile.png) |
+|  Signup | ![Home Mobile](./screenshots/home-mobile.png) |
+|  Login | ![Home Mobile](./screenshots/home-mobile.png) |
+| 📋 Dashboard | ![Dashboard Mobile](./screenshots/dashboard-mobile.png) |
+| 📝 Resume Builder | ![Resume Builder Mobile](./screenshots/resume-builder-mobile.png)|
+
+
+---
 ## 🔧 Tech Stack
 
 | Technology        | Use Case                            |
@@ -71,14 +82,7 @@ src/
 └── App.jsx
 
 ----
-###  design View
 
-| Page | Mobile Preview |
-|------|----------------|
-| 🏠 Home | ![Home Mobile](./screenshots/home-mobile.png) |
-| 📋 Dashboard | ![Dashboard Mobile](./screenshots/dashboard-mobile.png) |
-
----
 
 # 1. Clone the Repository
 git clone https://github.com/your-username/resume-builder.git

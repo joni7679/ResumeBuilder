@@ -1,8 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 
-import Login from "../components/Login";
-import Singup from "../components/Signup/Singup";
+
 import Error404 from "../components/Error404";
 import MainContent from "../Dashboard/user/components/MainContent";
 import Home from "../Dashboard/user/Pages/Home";
@@ -11,6 +10,12 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import PubliceRoute from "../components/PubliceRoute";
 import PublicRoute from "../components/PubliceRoute";
 import ResumeMarker from "../Dashboard/user/Pages/ResumeMarker";
+import Singup from "../components/Auth/Signup/Singup";
+import Login from "../components/Auth/Login";
+import ForgetPassword from "../components/Auth/ForgetPassword";
+import Profile from "../Dashboard/user/components/Profile";
+import Settings from "../Dashboard/user/components/Settings";
+import ResetPassword from "../Dashboard/user/components/Auth/ResetPassword";
 
 export let router = createBrowserRouter([
     {
@@ -47,6 +52,10 @@ export let router = createBrowserRouter([
         )
     },
     {
+        path: "/forgetpassword",
+        element: <ForgetPassword />
+    },
+    {
         path: "dashboard",
         element: (
             <ProtectedRoute>
@@ -61,7 +70,7 @@ export let router = createBrowserRouter([
             },
             {
                 path: "profile",
-                element: <h1>profile</h1>
+                element: <Profile />
             },
             {
                 path: "resume-Marker",
@@ -73,11 +82,15 @@ export let router = createBrowserRouter([
             },
             {
                 path: "settings",
-                element: <h1>settings</h1>
+                element: <Settings />
             },
             {
                 path: "jobs",
                 element: <h1>jobs</h1>
+            },
+            {
+                path:"resetpassword",
+                element: <ResetPassword />
             },
             {
                 path: "404",

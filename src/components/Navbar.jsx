@@ -18,7 +18,7 @@ function Navbar() {
                         <Link to="/" className="text-2xl font-bold text-blue-600">
                             Resume <span className="text-orange-500">Builder</span>
                         </Link>
-                        <div className="hidden lg:flex items-center space-x-10">
+                        <div className=" lg:flex items-center space-x-10">
                             {navlinkItems.map((navlink, index) => (
                                 <Link
                                     key={index}
@@ -30,7 +30,7 @@ function Navbar() {
                             ))}
                         </div>
                         {! user ?
-                            <div className="hidden lg:flex items-center gap-3">
+                            <div className=" lg:flex items-center gap-3">
                                 <Link to={`/signup`} className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-md shadow cursor-pointer">
                                     Signup
                                 </Link>

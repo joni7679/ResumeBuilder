@@ -5,8 +5,9 @@ import { MdOutlineAlternateEmail } from 'react-icons/md'
 import { TbPasswordFingerprint } from 'react-icons/tb'
 import SingupLeftpart from './SignupLeftPart'
 import SingupRightpart from './SignupRightPart'
-import Navbar from '../Navbar'
-import Footer from '../Footer'
+
+import Navbar from '../../Navbar'
+import Footer from '../../Footer'
 
 function Singup() {
     return (
@@ -18,7 +19,7 @@ function Singup() {
                     <SingupRightpart />
                 </div>
             </section>
-            <Footer />
+            <Footer/>
         </>
     )
 }
