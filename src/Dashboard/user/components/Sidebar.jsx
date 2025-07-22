@@ -10,7 +10,7 @@ import { MdArrowBackIos } from 'react-icons/md';
 const Sidebar = ({ open, setIsOpen }) => {
     const navigate = useNavigate();
     const { user, loading, error } = useContext(AuthContext);
-    const [activebar, setActivebar] = useState("");
+    const [active, setActive] = useState(0);
 
     const logOut = async () => {
         try {
@@ -65,15 +65,17 @@ const Sidebar = ({ open, setIsOpen }) => {
                 )}
 
 
-                {sidebarlinks.map((item) => {
+                {sidebarlinks.map((item, index) => {
                     const Icon = item.icon;
                     return (
                         <div key={item.id} className="grid grid-cols-1">
                             <Link
                                 to={item.path}
-                                className="mb-4 flex-shrink-0 w-[200px] px-4 py-3 hover:bg-[#E5F0FF] p-3 rounded-md cursor-pointer"
+                                onClick={() => setActive(index)}
+
+                                className={`mb-4 flex-shrink-0 w-[200px] px-4 py-3 hover:bg-[#E5F0FF] p-3 rounded-md cursor-pointer ${active === index ? "bg-[#E5F0FF]" : ""}`}
                             >
-                                <div  className="flex items-center gap-2 text-sm font-semibold text-gray-900">
+                                <div className="flex items-center gap-2 text-sm font-semibold text-gray-900">
                                     {Icon && <Icon />}
                                     {item.name}
 

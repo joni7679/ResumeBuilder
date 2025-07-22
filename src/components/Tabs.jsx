@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import PersonalInfo from './PersonalInfo';
-import Education from './Education';
-import Skills from './Skills';
-import WorkEXperience from './WorkEXperience';
-import Projects from './Projects';
-import { data } from 'react-router-dom';
-import { FaEye } from 'react-icons/fa';
+import React, { useState } from "react";
+import PersonalInfo from "./PersonalInfo";
+import Education from "./Education";
+import Skills from "./Skills";
+import WorkEXperience from "./WorkEXperience";
+import Projects from "./Projects";
+import { FaEye } from "react-icons/fa";
 
 const Tabs = () => {
-
-    const [pouup, setPopUp] = useState(false);
-
-    const [activeTab, setActiveTab] = useState("personal");
+    const [popup, setPopup] = useState(false);
+    const [activeTab, setActiveTab] = useState(0);
     const [formData, setFormData] = useState({
         personalInfo: {
             fullName: "",
@@ -21,97 +18,143 @@ const Tabs = () => {
             dob: "",
             linkedin: "",
             github: "",
-            portfolio: ""
+            portfolio: "",
+            summary: ""
         },
         education: [],
         skills: [],
         experience: [],
-        projects: []
+        projects: [],
     });
 
-
-
     const tabs = [
-        { id: "personal", label: "Personal Info" },
-        { id: "education", label: "Education" },
-        { id: "skills", label: "Skills" },
-        { id: "work experience", label: "work experience" },
-        { id: "projects", label: "projects" }
+        {
+            label: "Personal Info",
+            component: (
+                <PersonalInfo
+                    data={formData.personalInfo}
+                    setFormData={setFormData}
+                />
+            ),
+        },
+        {
+            label: "Education",
+            component: (
+                <Education
+                    data={formData.education}
+
+                />
+            ),
+        },
+        {
+            label: "Skills",
+            component: (
+                <Skills
+                    data={formData.skills}
+
+                />
+            ),
+        },
+        {
+            label: "Work Experience",
+            component: (
+                <WorkEXperience
+                    data={formData.experience}
+
+                />
+            ),
+        },
+        {
+            label: "Projects",
+            component: (
+                <Projects
+                    data={formData.projects}
+                />
+            ),
+        },
     ];
 
-    // pouup logic here...
-    const poupBox = () => {
-        setPopUp(!pouup);
-        
+    const popupBox = () => setPopup(!popup);
+    const ActiveTabComponent = tabs[activeTab].component;
+    // handel next
+    const handleNext = () => {
+        setActiveTab(activeTab + 1);
 
     }
-
-    const renderTab = () => {
-        switch (activeTab) {
-            case "personal":
-                return <PersonalInfo data={formData.personalInfo} setData={(updated) =>
-                    setFormData({ ...formData, personalIfo: updated })
-                } />;
-            case "education":
-                return <Education data={data.education} setData={(updated) => { setFormData({ ...formData, education: updated }) }} />;
-            case "skills":
-                return <Skills data={data.skills} setData={(updated) => { setFormData({ ...formData, skills: updated }) }} />;
-            case "work experience":
-                return <WorkEXperience data={data.WorkEXperience} setData={(updated) => { setFormData({ ...formData, WorkEXperience: updated }) }} />
-            case "projects":
-                return <Projects data={data.projects} setData={(updated) => { setFormData({ ...formData, projects: updated }) }} />
-            default:
-                return <PersonalInfo />;
-        }
-    };
-
-    //  Load from localStorage
-    useEffect(() => {
-        const save = localStorage.getItem("resumeData");
-        if (save) {
-            setFormData(JSON.parse(save))
-        }
-    }, []);
-
-    // Save to localStorage on formData chang
-    useEffect(() => {
-        localStorage.setItem("resumeData", JSON.stringify(formData));
-    }, [formData])
+    // handle prev
+    const handlePrev = () => {
+        setActiveTab(activeTab - 1);
+    }
 
     return (
-        <div className='w-full h-screen overflow-scroll  relative'>
-            <button onClick={poupBox} className='px-[25px] py-[15px] rounded-md bg-blue-700 cursor-pointer'>
-                <FaEye className='text-xl' />
-
+        <div className="w-full h-screen overflow-scroll relative">
+            <button
+                onClick={popupBox}
+                className="flex cursor-pointer duration-300 ease-in items-center gap-2 px-5 py-3 rounded-md bg-blue-700 text-white"
+            >
+                <FaEye className="text-xl" />
+                <span>Preview</span>
             </button>
-            <div onClick={poupBox} className={`${pouup ? "overly absolute top-0 z-9 left-0 w-full h-full cursor-pointer" : " "} `}></div>
-            <div className="w-full  p-4">
-                <div className=" w-full bg-white rounded-xl p-4">
-                    <div className="w-full info flex flex-row gap-4 overflow-x-auto scrollbar-hide p-4">
-                        {tabs.map((tab) => (
+
+            {popup && (
+                <div
+                    onClick={popupBox}
+                    className={`fixed top-0 left-0 w-full h-full ${popup ? "overly" : ""} bg-opacity-40 z-10`}
+                ></div>
+            )}
+
+            <div className="w-full p-4">
+                <div className="w-full bg-white rounded-xl p-4">
+                    <div className="w-full flex flex-row gap-4 overflow-x-auto scrollbar-hide p-4">
+                        {tabs.map((tab, index) => (
                             <button
-                                key={tab.id}
-                                onClick={() => setActiveTab(tab.id)}
-                                className={`flex-shrink-0 w-[200px] px-4 py-3 text-left cursor-pointer text-sm font-medium rounded-2xl border transition-all duration-300
-                                 ${activeTab === tab.id
-                                        ? "bg-[#E5F0FF] text-black border-blue-400"
-                                        : "bg-[#FAFCFE] text-gray-700 border-gray-200 hover:bg-blue-50"
+                                key={index}
+                                onClick={() => setActiveTab(index)}
+                                className={`flex-shrink-0 w-[200px] px-4 py-3 text-left cursor-pointer text-sm font-medium rounded-2xl border transition-all duration-300 ${activeTab === index
+                                    ? "bg-[#E5F0FF] text-black border-blue-400"
+                                    : "bg-[#FAFCFE] text-gray-700 border-gray-200 hover:bg-blue-50"
                                     }`}
                             >
                                 {tab.label}
                             </button>
                         ))}
                     </div>
+                </div>
+
+                <div className="w-full mt-5 bg-white rounded-xl p-6 shadow-sm">
+                    {ActiveTabComponent}
+                </div>
+                <div className="mt-5 w-full ">
+
+                    {activeTab === tabs.length - 1 && (
+                        <button className="bg-green-700 w-full cursor-pointer px-4 py-6 rounded text-white hover:bg-green-800">
+                            Save & Submit
+                        </button>
+                    )}
 
                 </div>
 
-                <div className="w-full mt-5  bg-white rounded-xl  p-6 shadow-sm">
-                    {renderTab()}
+                <div className="mt-5 w-full  flex items-center justify-center gap-2.5">
+                    {activeTab > 0 && (
+                        <button
+                            onClick={handlePrev}
+                            className='px-[25px] w-1/2 text-white mt-5 py-[15px] cursor-pointer duration-100 rounded-md bg-blue-800'
+                        >
+                            Prev
+                        </button>
+                    )}
+
+                    {activeTab < tabs.length - 1 && (
+                        <button
+                            onClick={handleNext}
+                            className='px-[25px] w-1/2 text-white mt-5 py-[15px] cursor-pointer duration-100 rounded-md bg-blue-800'
+                        >
+                            Next
+                        </button>
+                    )}
                 </div>
             </div>
         </div>
-
-
     );
 };
 

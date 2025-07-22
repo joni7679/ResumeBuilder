@@ -15,13 +15,14 @@ const TextareaField = ({ label, name, placeholder, value, onChange }) => {
         id={name}
         name={name}
         placeholder={placeholder}
-        className="resize-y p-3 text-base border-2 border-gray-300 rounded-md 
+        className="resize-y p-3 text-base border-2 w-full border-gray-300 rounded-md 
                    focus:outline-none focus:border-blue-600 focus:ring-2 
                    focus:ring-blue-300 placeholder-gray-400 bg-white text-gray-900
                    min-h-[120px]"
         value={value}
         onChange={onChange}
         rows={5}
+       
       />
     </div>
   );
