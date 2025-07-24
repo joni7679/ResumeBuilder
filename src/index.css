@@ -1,11 +1,12 @@
 @import "tailwindcss";
+
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
-  root: ":root";
-  include: ;
-  exclude: ;
-  prefix: ;
-  logs: true;
+    themes: light --default, dark --prefersdark;
+    root: ":root";
+    include: ;
+    exclude: ;
+    prefix: ;
+    logs: true;
 }
 
 .singup-left-part .overly {
@@ -16,6 +17,25 @@
 .info::-webkit-scrollbar {
     display: none;
 }
-.overly{
+
+.overly {
     background: rgba(0, 0, 0, 0.5);
+}
+
+@layer utilities {
+    @keyframes popup {
+        0% {
+            transform: scale(0.9);
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    .animate-popup {
+        animation: popup 0.3s ease-out forwards;
+    }
 }

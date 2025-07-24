@@ -46,7 +46,7 @@ const Sidebar = ({ open, setIsOpen }) => {
                     <div className="bg-blue-100 p-2 rounded-full">
                         <div className="w-6 h-6 bg-gradient-to-tr from-blue-500 to-blue-700 rounded-full" />
                     </div>
-                    <span className="text-xl font-bold text-black">resume.bulider</span>
+                    <span className="text-xl font-bold text-black capitalize">resume.bulider</span>
                 </div>
 
 

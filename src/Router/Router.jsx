@@ -16,6 +16,7 @@ import ForgetPassword from "../components/Auth/ForgetPassword";
 import Profile from "../Dashboard/user/components/Profile";
 import Settings from "../Dashboard/user/components/Settings";
 import ResetPassword from "../Dashboard/user/components/Auth/ResetPassword";
+import PdfViewer from '../Dashboard/user/Pages/PdfView';
 
 export let router = createBrowserRouter([
     {
@@ -89,12 +90,15 @@ export let router = createBrowserRouter([
                 element: <h1>jobs</h1>
             },
             {
-                path:"resetpassword",
+                path: "resetpassword",
                 element: <ResetPassword />
             },
             {
                 path: "404",
                 element: <Error404 />
+            }, {
+                path: "pdfviwer",
+                element: <PdfViewer />
             }
 
         ]

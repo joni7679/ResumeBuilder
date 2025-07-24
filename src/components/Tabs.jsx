@@ -4,7 +4,8 @@ import Education from "./Education";
 import Skills from "./Skills";
 import WorkEXperience from "./WorkEXperience";
 import Projects from "./Projects";
-import { FaEye } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import ResumeDocument from "../Dashboard/user/components/ResumeDoucment";
 
 const Tabs = () => {
     const [popup, setPopup] = useState(false);
@@ -88,20 +89,36 @@ const Tabs = () => {
 
     return (
         <div className="w-full h-screen overflow-scroll relative">
-            <button
-                onClick={popupBox}
-                className="flex cursor-pointer duration-300 ease-in items-center gap-2 px-5 py-3 rounded-md bg-blue-700 text-white"
-            >
-                <FaEye className="text-xl" />
-                <span>Preview</span>
-            </button>
 
             {popup && (
-                <div
-                    onClick={popupBox}
-                    className={`fixed top-0 left-0 w-full h-full ${popup ? "overly" : ""} bg-opacity-40 z-10`}
-                ></div>
+                <>
+                    <div onClick={popupBox} className={`fixed top-0 left-0 w-full h-full  ${popup ? "overly" : ""} z-40`}>
+                    </div>
+
+                    <div className="left-1/2 transform -translate-x-1/2 -translate-y-1/2   bg-white fixed top-1/2 w-[95%] md:w-[70%] max-h-[90vh] overflow-y-auto rounded-xl shadow-xl p-6   animate-popup z-50">
+                        <ResumeDocument />
+                    </div>
+                </>
             )}
+
+
+            <button
+                onClick={popupBox}
+                className="flex cursor-pointer duration-300 ease-in items-center gap-2 px-5 py-3 rounded-md bg-blue-700 text-white mt-4"
+            >
+                {!popup ? (
+                    <>
+                        <FaEye className="text-xl" />
+                        <span>Preview</span>
+                    </>
+                ) : (
+                    <>
+                        <FaEyeSlash />
+                        <span>Close</span>
+                    </>
+                )}
+            </button>
+
 
             <div className="w-full p-4">
                 <div className="w-full bg-white rounded-xl p-4">
