@@ -2,8 +2,16 @@ import React from 'react';
 import { Document, Page, View, Text, StyleSheet } from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({
-    page: { padding: 30 },
-    heading: { fontSize: 12, fontWeight: 'bold', marginBottom: 3, color: 'black', textAlign: 'center' },
+    page: {
+        padding: 30
+    },
+    heading: {
+        fontSize: 12,
+        fontWeight: 'bold',
+        marginBottom: 3,
+        color: 'black',
+        textAlign: 'center'
+    },
     subheading: {
         fontSize: 11,
         marginBottom: 3,
@@ -15,16 +23,24 @@ const styles = StyleSheet.create({
         borderColor: '#000',
         paddingBottom: 4,
     },
-    margin: { marginTop: 5 },
-    text: { fontSize: 9, marginBottom: 4, color: 'black' },
-    boldText: { fontWeight: 'bold' },
+    margin: {
+        marginTop: 5
+    },
+    text: {
+        fontSize: 9,
+        marginBottom: 4,
+        color: 'black'
+    },
+    boldText: {
+        fontWeight: 'bold'
+    },
     jobTitle: {
         fontWeight: 'bold',
         fontSize: 11,
         marginTop: 8,
         color: 'black',
     },
-    jobDetails: {
+    techskill: {
         fontSize: 9,
         color: '#666',
         marginBottom: 2,
@@ -35,10 +51,17 @@ const styles = StyleSheet.create({
         color: 'black',
     },
     textAlign: { textAlign: 'center' },
+    flex: {
+        flexDirection: "row",
+        justifyContent: "space-center",
+        marginBottom: 4,
+        marginHorizontal: 10,
+    },
+
 });
 
 function ResumeContent() {
-    
+
     return (
         <Document>
             <Page size="A4" style={styles.page}>
@@ -62,7 +85,7 @@ function ResumeContent() {
                     <Text style={[styles.subheading, styles.border, styles.margin]}>WORK EXPERIENCE</Text>
 
                     <Text style={styles.jobTitle}>Frontend Developer Intern – Gravity Coding School</Text>
-                    <Text style={styles.jobDetails}>Feb 2025 – May 2025 | Remote</Text>
+                    <Text style={styles.techskill}>Feb 2025 – May 2025 | Remote</Text>
                     <Text style={styles.jobDesc}>• Built responsive UIs using Tailwind CSS and GSAP.</Text>
                     <Text style={styles.jobDesc}>• Converted Figma designs into production-ready React components.</Text>
                     <Text style={styles.jobDesc}>• Implemented scroll-based animations with AOS and ScrollTrigger.</Text>
@@ -80,27 +103,31 @@ function ResumeContent() {
                     <Text style={[styles.subheading, styles.border, styles.margin]}>PROJECTS</Text>
 
                     <Text style={styles.jobTitle}>Resume Builder Web App</Text>
-                    <Text style={styles.jobDetails}>React.js, Context API, Firebase Auth, Tailwind CSS</Text>
+                    <Text style={styles.techskill}>React.js, Context API, Firebase Auth, Tailwind CSS</Text>
+                    <View style={styles.flex}>
+                        <Text style={styles.text}>Live Link:</Text>
+                        <Text style={styles.text}>GitHub Repo:</Text>
+                    </View>
                     <Text style={styles.jobDesc}>• Built dynamic resume builder with real-time preview.</Text>
                     <Text style={styles.jobDesc}>• Integrated Firebase Auth for secure login and session handling.</Text>
                     <Text style={styles.jobDesc}>• Enabled PDF export using react-to-print and localStorage persistence.</Text>
 
                     <Text style={styles.jobTitle}>Learning Management System (LMS)</Text>
-                    <Text style={styles.jobDetails}>React.js, Redux Toolkit, Firebase Auth, Tailwind CSS</Text>
-                    <Text style={styles.jobDesc}>• Created role-based dashboards for Admin and Users.</Text>
-                    <Text style={styles.jobDesc}>• Managed global state with Redux Toolkit and secured routes.</Text>
-                    <Text style={styles.jobDesc}>• Built a responsive, scalable SPA with protected navigation.</Text>
+                    <Text style={styles.techskill}>React.js, Redux Toolkit, Firebase Auth, Tailwind CSS</Text>
+                    <Text style={styles.jobDesc}> Created role-based dashboards for Admin and Users.</Text>
+                    <Text style={styles.jobDesc}> Managed global state with Redux Toolkit and secured routes.</Text>
+                    <Text style={styles.jobDesc}> Built a responsive, scalable SPA with protected navigation.</Text>
 
                     <Text style={styles.jobTitle}>Employee Management System</Text>
-                    <Text style={styles.jobDetails}>React.js, Context API, Tailwind CSS, React Router</Text>
-                    <Text style={styles.jobDesc}>• Built task dashboard with dynamic filtering and routing.</Text>
-                    <Text style={styles.jobDesc}>• Used Context API for state sharing across components.</Text>
-                    <Text style={styles.jobDesc}>• Implemented authentication and conditional UI rendering.</Text>
+                    <Text style={styles.techskill}>React.js, Context API, Tailwind CSS, React Router</Text>
+                    <Text style={styles.jobDesc}> Built task dashboard with dynamic filtering and routing.</Text>
+                    <Text style={styles.jobDesc}> Used Context API for state sharing across components.</Text>
+                    <Text style={styles.jobDesc}> Implemented authentication and conditional UI rendering.</Text>
 
                     <Text style={styles.jobTitle}>Location Search App</Text>
-                    <Text style={styles.jobDetails}>HTML, CSS, JavaScript</Text>
-                    <Text style={styles.jobDesc}>• Developed search interface for hotel and travel listings.</Text>
-                    <Text style={styles.jobDesc}>• Filtered data using JavaScript and optimized UX with instant search.</Text>
+                    <Text style={styles.techskill}>HTML, CSS, JavaScript</Text>
+                    <Text style={styles.jobDesc}> Developed search interface for hotel and travel listings.</Text>
+                    <Text style={styles.jobDesc}> Filtered data using JavaScript and optimized UX with instant search.</Text>
                 </View>
 
                 {/* Technical Skills */}
