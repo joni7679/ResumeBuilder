@@ -17,6 +17,7 @@ function MainContent() {
             {
                 open ? <FaBars /> : <RxCross1  className="rotate-90" />
             }
+            
             </button>
 
          

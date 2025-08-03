@@ -24,7 +24,8 @@ const styles = StyleSheet.create({
     },
 });
 
-function ResumeContent() {
+    function ResumeContent({ data }) {
+
     return (
         <Document>
             <Page size="A4" style={styles.page}>
@@ -34,7 +35,6 @@ function ResumeContent() {
                     <Text style={[styles.subheading, styles.border, styles.margin]}>
                         PROFESSIONAL SUMMARY
                     </Text>
-
                     <Text style={styles.text}>
                         Highly motivated and detail-oriented frontend developer with 2+ years of experience in building scalable and user-friendly web applications using modern JavaScript frameworks.
                     </Text>
@@ -69,9 +69,7 @@ function ResumeContent() {
                             Tools:
                         </Text>
                         Git, GitHub, Netlify, Vercel, Formik, Yup, Canva
-
                     </Text>
-
                 </View>
             </Page>
         </Document>

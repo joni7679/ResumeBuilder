@@ -1,6 +1,6 @@
 import React from "react";
 
-const TextareaField = ({ label, name, placeholder, value, onChange }) => {
+const TextareaField = ({ label, name, placeholder, value, onChange, error }) => {
   return (
     <div className="flex flex-col mb-4 w-full max-w-lg">
       {label && (
@@ -22,8 +22,10 @@ const TextareaField = ({ label, name, placeholder, value, onChange }) => {
         value={value}
         onChange={onChange}
         rows={5}
-       
+
       />
+      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+
     </div>
   );
 };

@@ -5,11 +5,11 @@ function SingupLeftpart() {
     return (
         <>
             <div className="signup-left-part relative w-full h-full lg:h-screen overflow-hidden">
-                <img
+                {/* <img
                     src="https://www.getsetresumes.com/storage/resume-examples/March2023/VbcK5LVA8jI0LvaXrc6X.jpg"
                     alt="Resume Example"
                     className="w-full h-full object-cover"
-                />
+                /> */}
 
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b overly flex items-center justify-center text-center px-6">
 

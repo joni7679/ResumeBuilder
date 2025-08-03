@@ -22,6 +22,7 @@ function Skills() {
         "Shery.js",
         "Locomotive.js"
     ]
+    
     return (
         <>
 

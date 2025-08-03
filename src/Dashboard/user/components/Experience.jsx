@@ -1,7 +1,8 @@
 import React from 'react'
 import { FaPencilAlt } from 'react-icons/fa'
 
-function Experience() {
+function Experience({ data }) {
+    console.log("data",data);
     return (
         <>
             <section className="bg-white p-6 rounded-md shadow-md w-full  mx-w-md mx-auto mt-10">

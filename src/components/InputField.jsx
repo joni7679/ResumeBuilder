@@ -1,6 +1,6 @@
 import React from 'react';
 
-function InputField({ label, type = "text", value, name, onChange, placeholder }) {
+function InputField({ label, type = "text", value, name, onChange, placeholder, error }) {
     return (
         <div className="w-full mb-4">
             {label && (
@@ -21,6 +21,8 @@ function InputField({ label, type = "text", value, name, onChange, placeholder }
                 placeholder={placeholder}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-800 transition"
             />
+
+            {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
 
         </div>
 

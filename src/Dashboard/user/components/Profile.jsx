@@ -22,7 +22,7 @@ function Profile() {
     return (
         <>
             <ToastContainer />
-            <div className="card bg-base-100 w-96 shadow-sm bg-gray-800 px-5 py-4 text-white">
+            <div className="card  w-96 shadow-sm bg-gray-800 px-5 py-4 text-white">
                 <div className="avatar mb-4">
                     <div className="ring-primary ring-offset-base-100 w-24 rounded-full ring-2 ring-offset-2">
 
