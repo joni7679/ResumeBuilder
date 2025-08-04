@@ -1,17 +1,26 @@
 import React from 'react';
-import { Document, Page, View, Text, StyleSheet, Link } from '@react-pdf/renderer';
+import { Document, Page, View, Text, StyleSheet, Link, Image } from '@react-pdf/renderer';
+import githubIcon from '../../../assets/github.png';
+import phoneIcon from '../../../assets/phone-call.png';
+import linkedinIcon from '../../../assets/linkedin-logo.png';
+import webbIcon from '../../../assets/world-wide-web.png';
+import emailIcon from '../../../assets/mail.png';
+import pinIcon from '../../../assets/pin.png'
+
+
+
 
 
 const styles = StyleSheet.create({
     page: {
-        padding: 30
+        padding: 30,
     },
     heading: {
         fontSize: 12,
         fontWeight: 'bold',
         marginBottom: 3,
         color: 'black',
-        textAlign: 'center'
+        textAlign: 'center',
     },
     subheading: {
         fontSize: 11,
@@ -25,15 +34,15 @@ const styles = StyleSheet.create({
         paddingBottom: 4,
     },
     margin: {
-        marginTop: 5
+        marginTop: 5,
     },
     text: {
         fontSize: 9,
         marginBottom: 4,
-        color: 'black'
+        color: 'black',
     },
     boldText: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     },
     jobTitle: {
         fontWeight: 'bold',
@@ -51,15 +60,40 @@ const styles = StyleSheet.create({
         marginBottom: 2,
         color: 'black',
     },
-    textAlign: { textAlign: 'center' },
+    textAlign: {
+        textAlign: 'center',
+    },
     flex: {
-        flexDirection: "row",
-        justifyContent: "space-center",
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 4,
         marginBottom: 4,
         marginHorizontal: 10,
     },
 
+    link: {
+        fontSize: 9,
+        textDecoration: 'underline',
+        marginBottom: 4,
+        color: 'black',
+    },
+
+    icon: {
+        width: 12,
+        height: 12,
+        marginRight: 4,
+    },
+
+    item: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginRight: 10,
+        marginBottom: 4,
+    },
 });
+
 
 function ResumeContent() {
     const savedData = JSON.parse(localStorage.getItem("resumeData"));
@@ -73,25 +107,53 @@ function ResumeContent() {
                     <Text style={styles.heading}>{savedData?.personalinfo?.fullName || 'Your Name'}</Text>
                     <Text style={[styles.subheading, styles.margin, styles.textAlign]}>{savedData?.personalinfo?.jobtitle || 'Job Title'}</Text>
                 </View>
-                <View style={styles.flex}>
-                    <Text style={styles.text}>Email: {savedData?.personalinfo?.email}</Text>
-                    <Text style={styles.text}>Phone: {savedData?.personalinfo?.phone}</Text>
+                <View style={[styles.flex, styles.textAlign]}>
+                  
+                    <View style={styles.item}>
+                        <Image src={emailIcon} style={styles.icon} />
+                        <Text style={styles.text}>{savedData?.personalinfo?.email}</Text>
+                    </View>
 
-                    <Link src={savedData?.personalinfo?.github} style={styles.link}>
-                        GitHub: {savedData?.personalinfo?.github}
-                    </Link>
+                   
+                    <View style={styles.item}>
+                        <Image src={phoneIcon} style={styles.icon} />
+                        <Text style={styles.text}>{savedData?.personalinfo?.phone}</Text>
+                    </View>
 
-                    <Link src={savedData?.personalinfo?.linkedin} style={styles.link}>
-                        LinkedIn: {savedData?.personalinfo?.linkedin}
-                    </Link>
+                  
+                    <View style={styles.item}>
+                        <Image src={githubIcon} style={styles.icon} />
+                        <Link src={savedData?.personalinfo?.githubLink} style={styles.link}>
+                            GitHub
+                        </Link>
+                    </View>
 
-                    <Link src={savedData?.personalinfo?.portfolio} style={styles.link}>
-                        Portfolio: {savedData?.personalinfo?.portfolio}
-                    </Link>
+                   
+                    <View style={styles.item}>
+                        <Image src={linkedinIcon} style={styles.icon} />
+                        <Link src={savedData?.personalinfo?.linkedin} style={styles.link}>
+                            LinkedIn
+                        </Link>
+                    </View>
 
-                    <Text style={styles.text}>Address: {savedData?.personalinfo?.address}</Text>
+                 
+                    <View style={styles.item}>
+                        <Image src={webbIcon} style={styles.icon} />
+                        <Link src={savedData?.personalinfo?.portfolio} style={styles.link}>
+                            Portfolio
+                        </Link>
+                    </View>
+
+                 
+                    <View style={styles.item}>
+                        <Image src={pinIcon} style={styles.icon} />
+                        <Text style={styles.text}>{savedData?.personalinfo?.address}</Text>
+                    </View>
                 </View>
-                {/* Professional Summary */}
+
+
+
+
                 <View>
                     <Text style={[styles.subheading, styles.border, styles.margin]}>PROFESSIONAL SUMMARY</Text>
                     <Text style={styles.text}>
