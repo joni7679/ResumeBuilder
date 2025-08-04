@@ -22,31 +22,47 @@ function Profile() {
     return (
         <>
             <ToastContainer />
-            <div className="card  w-96 shadow-sm bg-gray-800 px-5 py-4 text-white">
-                <div className="avatar mb-4">
-                    <div className="ring-primary ring-offset-base-100 w-24 rounded-full ring-2 ring-offset-2">
-
+            <div className="flex justify-center items-center min-h-screen px-4">
+                <div className="w-full max-w-sm rounded-xl shadow-lg bg-gray-800 text-white p-6">
+                    <div className="flex justify-center mb-5">
+                        <div className="w-24 h-24 rounded-full ring-4 ring-blue-500 ring-offset-2 ring-offset-gray-900 bg-gray-700 flex items-center justify-center text-xl">
+                            <span>{user?.displayName|| "U"}</span>
+                        </div>
                     </div>
-                </div>
-                <div className="card-body">
-                    <h1><span className='font-semibold'>User Name :</span> {user?.displayName || "N/A"}</h1>
-                    <h1><span className='font-semibold'>User Email :</span> {user?.email || "N/A"}</h1>
-                    <h1><span className='font-semibold'>User UID :</span> {user?.uid || "N/A"}</h1>
-                    <h1><span className='font-semibold'>Email Verified :</span> {user?.emailVerified ? "Yes" : "No"}</h1>
-                    {
-                        !user?.emailVerified && (
-                            <button className="btn btn-primary" onClick={emailVerificationHandler}>
+
+                    <div className="space-y-3">
+                        <p>
+                            <span className="font-semibold">User Name:</span> {user?.displayName || "N/A"}
+                        </p>
+                        <p>
+                            <span className="font-semibold">User Email:</span> {user?.email || "N/A"}
+                        </p>
+                        <p>
+                            <span className="font-semibold">User UID:</span> {user?.uid || "N/A"}
+                        </p>
+                        <p>
+                            <span className="font-semibold">Email Verified:</span>{" "}
+                            <span className={user?.emailVerified ? "text-green-400" : "text-red-400"}>
+                                {user?.emailVerified ? "Yes" : "No"}
+                            </span>
+                        </p>
+
+                        {!user?.emailVerified && (
+                            <button
+                                onClick={emailVerificationHandler}
+                                className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition"
+                            >
                                 Send Verification Email
                             </button>
-                        )
-                    }
-                    {
-                        isVerifyEmail && (
-                            <p className="text-green-500">Verification email sent successfully!</p>
-                        )
-                    }
+                        )}
+
+                        {isVerifyEmail && (
+                            <p className="text-green-500 mt-2 text-sm">Verification email sent successfully!</p>
+                        )}
+                    </div>
                 </div>
             </div>
+
         </>
     );
 }

@@ -25,7 +25,7 @@ function AboutMe({ data }) {
                 <span className="text-xs bg-red-100 text-red-500 px-2 py-0.5 rounded-full font-medium">1 Urgent</span>
             </div>
             <p className="text-gray-700">
-                {personalinfo.summary}
+                {personalinfo?.summary || "N/A"}
             </p>
         </section>
     )

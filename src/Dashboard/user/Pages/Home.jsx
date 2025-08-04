@@ -1,13 +1,21 @@
-import React from 'react'
+import React from "react";
 
 function Home() {
+  const savedata = JSON.parse(localStorage.getItem("allResumes"));
+
   return (
-    <div>
-      <h1>Home Page</h1>
-      <p>This is the home page of our application.</p>
-      <p>well come to user our platform...</p>
+    <div className="min-h-screen text-white flex flex-col items-center justify-center px-4">
+      <h1>
+        Welcome to Resume Builder
+      </h1>
+      
+
+
+
+
     </div>
-  )
+
+  );
 }
 
-export default Home
+export default Home;

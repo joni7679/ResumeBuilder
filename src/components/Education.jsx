@@ -29,10 +29,10 @@ function Education({ data, setFormData, errors }) {
         }));
     };
 
-    const handleAdd = () => {
+    const handleAddEducation = () => {
         const { collegename, stream, startdate, enddate, currentlyStudying } = education;
 
-        if (!collegename || !stream || !startdate || (!currentlyStudying && !enddate)) {
+        if (!collegename || !stream || !startdate) {
             toast.error('All fields are required', {
                 position: "top-right",
                 autoClose: 5000,
@@ -41,10 +41,19 @@ function Education({ data, setFormData, errors }) {
             });
             return;
         }
+        const newEducationObject = {
+            collegename: education.collegename,
+            stream: education.stream,
+            startdate: education.startdate,
+            enddate: education.enddate,
+            currentlyStudying: education.currentlyStudying
+        };
+
         // push logic here
-        setFormData((prev) => [...prev, education]);
-
-
+        setFormData(prev => ({
+            ...prev,
+            education: [...prev.education, newEducationObject]
+        }));
 
         seteducation({
             collegename: "",
@@ -108,12 +117,28 @@ function Education({ data, setFormData, errors }) {
             {errors.education && <p className='text-red-600 text-sm mt-5'>{errors.education}</p>}
 
             <button
-                onClick={handleAdd}
+                onClick={handleAddEducation}
                 type="button"
                 className="w-full mt-2 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
             >
                 Add Education
             </button>
+            {data.length > 0 && (
+                <div className="mt-5">
+                    <h3 className="text-md font-medium mb-2 text-black">Your Added Education:</h3>
+                    <ul className="space-y-2">
+                        {data.map((edu, idx) => (
+                            <li key={idx} className="border p-2 rounded shadow-sm text-sm text-gray-700 bg-gray-50">
+                                <p className='font-semibold text-xl capitalize'>{edu.collegename}</p> —  <p className='capitalize'>{edu.stream}</p> <br />
+                                <span>
+                                    {edu.startdate} to {edu.currentlyStudying ? "Present" : edu.enddate}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+
 
             <ToastContainer />
         </>

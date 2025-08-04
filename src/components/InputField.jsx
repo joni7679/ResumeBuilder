@@ -1,6 +1,6 @@
 import React from 'react';
 
-function InputField({ label, type = "text", value, name, onChange, placeholder, error }) {
+function InputField({ label, type = "text", value, name, onChange, placeholder, error, onKeyDown }) {
     return (
         <div className="w-full mb-4">
             {label && (
@@ -19,6 +19,7 @@ function InputField({ label, type = "text", value, name, onChange, placeholder, 
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
+                onKeyDown={onKeyDown}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-800 transition"
             />
 

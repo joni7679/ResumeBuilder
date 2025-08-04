@@ -1,5 +1,6 @@
 import React from 'react';
-import { Document, Page, View, Text, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, View, Text, StyleSheet, Link } from '@react-pdf/renderer';
+
 
 const styles = StyleSheet.create({
     page: {
@@ -61,6 +62,7 @@ const styles = StyleSheet.create({
 });
 
 function ResumeContent() {
+    const savedData = JSON.parse(localStorage.getItem("resumeData"));
 
     return (
         <Document>
@@ -68,83 +70,90 @@ function ResumeContent() {
 
                 {/* Header */}
                 <View>
-                    <Text style={styles.heading}>Joni Halder</Text>
-                    <Text style={[styles.subheading, styles.margin, styles.textAlign]}>Frontend Developer</Text>
+                    <Text style={styles.heading}>{savedData?.personalinfo?.fullName || 'Your Name'}</Text>
+                    <Text style={[styles.subheading, styles.margin, styles.textAlign]}>{savedData?.personalinfo?.jobtitle || 'Job Title'}</Text>
                 </View>
+                <View style={styles.flex}>
+                    <Text style={styles.text}>Email: {savedData?.personalinfo?.email}</Text>
+                    <Text style={styles.text}>Phone: {savedData?.personalinfo?.phone}</Text>
 
+                    <Link src={savedData?.personalinfo?.github} style={styles.link}>
+                        GitHub: {savedData?.personalinfo?.github}
+                    </Link>
+
+                    <Link src={savedData?.personalinfo?.linkedin} style={styles.link}>
+                        LinkedIn: {savedData?.personalinfo?.linkedin}
+                    </Link>
+
+                    <Link src={savedData?.personalinfo?.portfolio} style={styles.link}>
+                        Portfolio: {savedData?.personalinfo?.portfolio}
+                    </Link>
+
+                    <Text style={styles.text}>Address: {savedData?.personalinfo?.address}</Text>
+                </View>
                 {/* Professional Summary */}
                 <View>
                     <Text style={[styles.subheading, styles.border, styles.margin]}>PROFESSIONAL SUMMARY</Text>
                     <Text style={styles.text}>
-                        Highly motivated and detail-oriented frontend developer with 2+ years of experience in building responsive and scalable web applications using React.js, Tailwind CSS, and Firebase. Proven ability to reduce load times and enhance user experience through optimization techniques.
+                        {savedData?.personalinfo?.summary || 'Add your summary here.'}
                     </Text>
                 </View>
 
                 {/* Work Experience */}
                 <View>
                     <Text style={[styles.subheading, styles.border, styles.margin]}>WORK EXPERIENCE</Text>
-
-                    <Text style={styles.jobTitle}>Frontend Developer Intern – Gravity Coding School</Text>
-                    <Text style={styles.techskill}>Feb 2025 – May 2025 | Remote</Text>
-                    <Text style={styles.jobDesc}>• Built responsive UIs using Tailwind CSS and GSAP.</Text>
-                    <Text style={styles.jobDesc}>• Converted Figma designs into production-ready React components.</Text>
-                    <Text style={styles.jobDesc}>• Implemented scroll-based animations with AOS and ScrollTrigger.</Text>
+                    {savedData?.experience?.length > 0 ? savedData.experience.map((exp, idx) => (
+                        <View key={idx}>
+                            <Text style={styles.jobTitle}>{exp.role} – {exp.company}</Text>
+                            <Text style={styles.techskill}>{exp.start} – {exp.end} | {exp.location}</Text>
+                            {exp.description?.map((desc, i) => (
+                                <Text key={i} style={styles.jobDesc}>• {desc}</Text>
+                            ))}
+                        </View>
+                    )) : (
+                        <Text style={styles.text}>No experience added yet.</Text>
+                    )}
                 </View>
 
                 {/* Education */}
                 <View>
                     <Text style={[styles.subheading, styles.border, styles.margin]}>EDUCATION</Text>
-                    <Text style={styles.text}>Gangarampur College</Text>
-                    <Text style={styles.text}>B.A in Arts (2022 – 2025)</Text>
+                    {savedData?.education?.length > 0 ? savedData.education.map((edu, idx) => (
+                        <View key={idx}>
+                            <Text style={styles.text}>{edu.collegename}</Text>
+                            <Text style={styles.text}>{edu.stream} ({edu.startdate} – {edu.enddate})</Text>
+                        </View>
+                    )) : (
+                        <Text style={styles.text}>No education data provided.</Text>
+                    )}
                 </View>
 
                 {/* Projects */}
                 <View>
                     <Text style={[styles.subheading, styles.border, styles.margin]}>PROJECTS</Text>
-
-                    <Text style={styles.jobTitle}>Resume Builder Web App</Text>
-                    <Text style={styles.techskill}>React.js, Context API, Firebase Auth, Tailwind CSS</Text>
-                    <View style={styles.flex}>
-                        <Text style={styles.text}>Live Link:</Text>
-                        <Text style={styles.text}>GitHub Repo:</Text>
-                    </View>
-                    <Text style={styles.jobDesc}>• Built dynamic resume builder with real-time preview.</Text>
-                    <Text style={styles.jobDesc}>• Integrated Firebase Auth for secure login and session handling.</Text>
-                    <Text style={styles.jobDesc}>• Enabled PDF export using react-to-print and localStorage persistence.</Text>
-
-                    <Text style={styles.jobTitle}>Learning Management System (LMS)</Text>
-                    <Text style={styles.techskill}>React.js, Redux Toolkit, Firebase Auth, Tailwind CSS</Text>
-                    <Text style={styles.jobDesc}> Created role-based dashboards for Admin and Users.</Text>
-                    <Text style={styles.jobDesc}> Managed global state with Redux Toolkit and secured routes.</Text>
-                    <Text style={styles.jobDesc}> Built a responsive, scalable SPA with protected navigation.</Text>
-
-                    <Text style={styles.jobTitle}>Employee Management System</Text>
-                    <Text style={styles.techskill}>React.js, Context API, Tailwind CSS, React Router</Text>
-                    <Text style={styles.jobDesc}> Built task dashboard with dynamic filtering and routing.</Text>
-                    <Text style={styles.jobDesc}> Used Context API for state sharing across components.</Text>
-                    <Text style={styles.jobDesc}> Implemented authentication and conditional UI rendering.</Text>
-
-                    <Text style={styles.jobTitle}>Location Search App</Text>
-                    <Text style={styles.techskill}>HTML, CSS, JavaScript</Text>
-                    <Text style={styles.jobDesc}> Developed search interface for hotel and travel listings.</Text>
-                    <Text style={styles.jobDesc}> Filtered data using JavaScript and optimized UX with instant search.</Text>
+                    {savedData?.projects?.length > 0 ? savedData.projects.map((proj, idx) => (
+                        <View key={idx}>
+                            <Text style={styles.jobTitle}>{proj.projectTitle}</Text>
+                            <Text style={styles.techskill}>{proj.techSkills}</Text>
+                            <View style={styles.flex}>
+                                <Text style={styles.text}>Live Link: {proj.liveLink || 'N/A'}</Text>
+                                <Text style={styles.text}>GitHub: {proj.githubLink || 'N/A'}</Text>
+                            </View>
+                            <Text style={styles.jobDesc}>• {proj.projectDescription || 'Project description not added.'}</Text>
+                        </View>
+                    )) : (
+                        <Text style={styles.text}>No projects listed.</Text>
+                    )}
                 </View>
+
 
                 {/* Technical Skills */}
                 <View>
                     <Text style={[styles.subheading, styles.border, styles.margin]}>TECHNICAL SKILLS</Text>
-
                     <Text style={styles.text}>
-                        <Text style={styles.boldText}>Frontend:</Text> React.js, Redux Toolkit, Tailwind CSS, GSAP, Bootstrap, Shery.js
-                    </Text>
-                    <Text style={styles.text}>
-                        <Text style={styles.boldText}>Routing & State:</Text> React Router, Context API, useState, useEffect
-                    </Text>
-                    <Text style={styles.text}>
-                        <Text style={styles.boldText}>Backend & Auth:</Text> Firebase Auth, Firebase Storage, json-server
-                    </Text>
-                    <Text style={styles.text}>
-                        <Text style={styles.boldText}>Developer Tools:</Text> Git, GitHub, Netlify, Vercel, Formik, Yup, Canva
+                        {savedData?.skills?.length > 0
+                            ? savedData.skills.join(', ')
+                            : 'No skills listed.'}
                     </Text>
                 </View>
 

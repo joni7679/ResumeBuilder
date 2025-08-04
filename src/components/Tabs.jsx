@@ -4,14 +4,18 @@ import Education from "./Education";
 import Skills from "./Skills";
 import WorkEXperience from "./WorkEXperience";
 import Projects from "./Projects";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-
+import { FaCloudDownloadAlt, FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
-import { Bounce } from "gsap";
+import { Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import ResumeDocument from "../Dashboard/user/components/ResumeDoucment";
 import Resume from "../Dashboard/user/Pages/Resume";
-
+import { LuSave } from "react-icons/lu";
+import { GrPrevious } from "react-icons/gr";
+import { MdNavigateNext } from "react-icons/md";
+import DownloadResumePreviewPoPUp from "../Dashboard/user/components/DownloadResumePreviewPoPUp";
 const Tabs = () => {
+    const [isSubmit, setIsSeubmit] = useState(false);
     const [errors, setErrors] = useState({})
     const [popup, setPopup] = useState(false);
     const [activeTab, setActiveTab] = useState(0);
@@ -39,7 +43,7 @@ const Tabs = () => {
     // skip logic here..
     const handleSkipExperience = () => {
         setSkipExperience(true);
-        setActiveTab(prev => prev + 1); 
+        setActiveTab(prev => prev + 1);
     };
 
     // validation logic here
@@ -242,8 +246,16 @@ const Tabs = () => {
     const handleSubmit = () => {
         const isValid = validation(activeTab);
         if (!isValid) return;
-        toast.success("Resume Create sccessfuly ");
+        setIsSeubmit(true)
+        const existingResumes = JSON.parse(localStorage.getItem("allResumes")) || [];
+        const updatedResumes = [...existingResumes, formData];
+        localStorage.setItem("allResumes", JSON.stringify(updatedResumes));
+        
+       
     }
+
+  
+
 
     // useeffect useed to data parse localstorage 
     useEffect(() => {
@@ -257,6 +269,8 @@ const Tabs = () => {
             setFormData(JSON.parse(savedData));
         }
     }, []);
+
+    localStorage.setItem("resumeData", JSON.stringify(formData));
 
     return (
         <div className="w-full h-screen overflow-scroll relative">
@@ -277,11 +291,19 @@ const Tabs = () => {
                     </div>
 
                     <div className="left-1/2 transform -translate-x-1/2 -translate-y-1/2   bg-white fixed top-1/2 w-[95%] md:w-[70%] max-h-[90vh] overflow-y-auto rounded-xl shadow-xl p-6   animate-popup z-50">
-                        <ResumeDocument data={formData} />
-                        {/* <Resume data={formData} /> */}
+                        {/* <ResumeDocument data={formData} /> */}
+                        <Resume data={formData} />
                     </div>
                 </>
             )}
+            {
+                isSubmit
+                &&
+                <div className="left-1/2 transform -translate-x-1/2 -translate-y-1/2   bg-white fixed top-1/2 w-[95%] md:w-[70%] max-h-[90vh] overflow-y-auto rounded-xl shadow-xl p-6   animate-popup z-50">
+                    <DownloadResumePreviewPoPUp />
+                </div>
+            }
+
 
 
             <button
@@ -326,19 +348,27 @@ const Tabs = () => {
                 <div className="mt-5 w-full ">
 
                     {activeTab === tabs.length - 1 && (
-                        <button onClick={handleSubmit} className="bg-green-700 w-full cursor-pointer px-4 py-6 rounded text-white hover:bg-green-800">
-                            Save & Submit
-                        </button>
-                    )}
+                        <div className="mt-6 flex flex-col md:flex-row items-center justify-between gap-4">
 
+                            <button
+                                onClick={handleSubmit}
+                                className="w-full md:w-auto px-6 py-3 flex items-center justify-center gap-2 rounded-xl bg-green-600 hover:bg-green-700 text-white font-medium shadow-md transition duration-300">
+                                <LuSave className="inline-block" />
+                                <span className="mr-2">
+                                    Save & Submit
+                                </span>
+                            </button>
+                        </div>
+                    )}
                 </div>
 
-                <div className="mt-5 w-full  flex items-center justify-center gap-2.5">
+                <div className="mt-6 w-full flex items-center justify-between gap-4">
+
                     {activeTab > 0 && (
                         <button
                             onClick={handlePrev}
-                            className='px-[25px] w-1/2 text-white mt-5 py-[15px] cursor-pointer duration-100 rounded-md bg-blue-800'
-                        >
+                            className="w-full md:w-1/2 flex items-center justify-center gap-3 cursor-pointer px-6 py-3 rounded-xl bg-blue-800 text-white font-medium shadow-md transition duration-300 hover:bg-blue-900">
+                            <GrPrevious />
                             Prev
                         </button>
                     )}
@@ -346,12 +376,13 @@ const Tabs = () => {
                     {activeTab < tabs.length - 1 && (
                         <button
                             onClick={handleNext}
-                            className='px-[25px] w-1/2 text-white mt-5 py-[15px] cursor-pointer duration-100 rounded-md bg-blue-700 hover:bg-blue-900'
-                        >
+                            className="w-full md:w-1/2 px-6 flex items-center justify-center gap-3 cursor-pointer py-3 rounded-xl bg-blue-700 text-white font-medium shadow-md transition duration-300 hover:bg-blue-900">
                             Next
+                            <MdNavigateNext className="text-xl" />
                         </button>
                     )}
                 </div>
+
             </div>
         </div>
     );
