@@ -72,6 +72,11 @@ const styles = StyleSheet.create({
         marginBottom: 4,
         marginHorizontal: 10,
     },
+    itemsCcenter: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 4,
+    },
 
     link: {
         fontSize: 9,
@@ -107,28 +112,28 @@ function ResumeContent() {
                     <Text style={styles.heading}>{savedData?.personalinfo?.fullName || 'Your Name'}</Text>
                     <Text style={[styles.subheading, styles.margin, styles.textAlign]}>{savedData?.personalinfo?.jobtitle || 'Job Title'}</Text>
                 </View>
-                <View style={[styles.flex, styles.textAlign]}>
-                  
+                <View style={[styles.flex]}>
+
                     <View style={styles.item}>
                         <Image src={emailIcon} style={styles.icon} />
                         <Text style={styles.text}>{savedData?.personalinfo?.email}</Text>
                     </View>
 
-                   
+
                     <View style={styles.item}>
                         <Image src={phoneIcon} style={styles.icon} />
                         <Text style={styles.text}>{savedData?.personalinfo?.phone}</Text>
                     </View>
 
-                  
+
                     <View style={styles.item}>
                         <Image src={githubIcon} style={styles.icon} />
-                        <Link src={savedData?.personalinfo?.githubLink} style={styles.link}>
+                        <Link src={savedData?.personalinfo?.github} style={styles.link}>
                             GitHub
                         </Link>
                     </View>
 
-                   
+
                     <View style={styles.item}>
                         <Image src={linkedinIcon} style={styles.icon} />
                         <Link src={savedData?.personalinfo?.linkedin} style={styles.link}>
@@ -136,7 +141,7 @@ function ResumeContent() {
                         </Link>
                     </View>
 
-                 
+
                     <View style={styles.item}>
                         <Image src={webbIcon} style={styles.icon} />
                         <Link src={savedData?.personalinfo?.portfolio} style={styles.link}>
@@ -144,7 +149,7 @@ function ResumeContent() {
                         </Link>
                     </View>
 
-                 
+
                     <View style={styles.item}>
                         <Image src={pinIcon} style={styles.icon} />
                         <Text style={styles.text}>{savedData?.personalinfo?.address}</Text>
@@ -161,32 +166,48 @@ function ResumeContent() {
                     </Text>
                 </View>
 
-                {/* Work Experience */}
+                {/* Work Experience */}   : "",
+
                 <View>
-                    <Text style={[styles.subheading, styles.border, styles.margin]}>WORK EXPERIENCE</Text>
-                    {savedData?.experience?.length > 0 ? savedData.experience.map((exp, idx) => (
-                        <View key={idx}>
-                            <Text style={styles.jobTitle}>{exp.role} – {exp.company}</Text>
-                            <Text style={styles.techskill}>{exp.start} – {exp.end} | {exp.location}</Text>
-                            {exp.description?.map((desc, i) => (
-                                <Text key={i} style={styles.jobDesc}>• {desc}</Text>
-                            ))}
-                        </View>
-                    )) : (
+                    <Text style={[styles.subheading, styles.border, styles.margin]}>
+                        WORK EXPERIENCE
+                    </Text>
+                    {savedData?.experience?.length > 0 ? (
+                        savedData.experience.map((exp, idx) => {
+                            const { companyname, startDate, endDate, location, description, role } = exp;
+                            return (
+                                <View key={idx}>
+                                    <Text style={styles.jobTitle}>
+                                        {role} – {companyname}
+                                    </Text>
+                                    <Text style={styles.techskill}>
+                                        {startDate} – {endDate} | {location}
+                                    </Text>
+                                    <Text style={styles.jobDesc}>{description}</Text>
+                                </View>
+                            );
+                        })
+                    ) : (
                         <Text style={styles.text}>No experience added yet.</Text>
                     )}
                 </View>
 
-                {/* Education */}
+
+                {/* Education   */}
                 <View>
                     <Text style={[styles.subheading, styles.border, styles.margin]}>EDUCATION</Text>
-                    {savedData?.education?.length > 0 ? savedData.education.map((edu, idx) => (
-                        <View key={idx}>
-                            <Text style={styles.text}>{edu.collegename}</Text>
-                            <Text style={styles.text}>{edu.stream} ({edu.startdate} – {edu.enddate})</Text>
-                        </View>
-                    )) : (
-                        <Text style={styles.text}>No education data provided.</Text>
+                    {savedData?.education?.length > 0 ? (
+                        savedData.education.map((edu, idx) => {
+                            const { collegename, stream, startdate, endDate } = edu
+                            return (
+                                <View key={idx}>
+                                    <Text style={styles.text}>{collegename}</Text>
+                                    <Text style={styles.text}>{stream} ({startdate} – {endDate})</Text>
+                                </View>
+                            );
+                        })
+                    ) : (
+                        <Text style={styles.text}>No education data provided..</Text>
                     )}
                 </View>
 
@@ -194,12 +215,23 @@ function ResumeContent() {
                 <View>
                     <Text style={[styles.subheading, styles.border, styles.margin]}>PROJECTS</Text>
                     {savedData?.projects?.length > 0 ? savedData.projects.map((proj, idx) => (
+
                         <View key={idx}>
                             <Text style={styles.jobTitle}>{proj.projectTitle}</Text>
                             <Text style={styles.techskill}>{proj.techSkills}</Text>
-                            <View style={styles.flex}>
-                                <Text style={styles.text}>Live Link: {proj.liveLink || 'N/A'}</Text>
-                                <Text style={styles.text}>GitHub: {proj.githubLink || 'N/A'}</Text>
+                            <View style={[styles.itemsCcenter]}>
+                                <View style={styles.item}>
+                                    <Image src={githubIcon} style={styles.icon} />
+                                    <Link src={proj?.githubRepo} style={styles.link}>
+                                        GitHub
+                                    </Link>
+                                </View>
+                                <View style={styles.item}>
+                                    <Image src={webbIcon} style={styles.icon} />
+                                    <Link src={proj?.projectLink} style={styles.link}>
+                                        Live Demo
+                                    </Link>
+                                </View>
                             </View>
                             <Text style={styles.jobDesc}>• {proj.projectDescription || 'Project description not added.'}</Text>
                         </View>

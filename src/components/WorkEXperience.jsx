@@ -155,11 +155,6 @@ function WorkEXperience({ handleSkipExperience, data, setFormData }) {
           Skip / Next
         </button>
 
-
-
-
-
-
       </div>
       <div>
         {data.length > 0 && (
