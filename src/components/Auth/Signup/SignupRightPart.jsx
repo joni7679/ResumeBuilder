@@ -7,32 +7,47 @@ import { TbPasswordFingerprint } from 'react-icons/tb'
 import { toast, ToastContainer } from 'react-toastify'
 import { auth } from '../../../firebase/Firebase'
 import { Link, useNavigate } from 'react-router-dom'
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
 function SingupRightpart() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isSignup, setisSignup] = useState(false);
+
     const navigate = useNavigate();
     // handle signup
     const handleSignup = async (e) => {
         e.preventDefault();
         console.log(email, password);
+
         if (!email || !password) {
             toast.error("Please fill in all fields");
+            return;
         }
+
         try {
             let usercredential = await createUserWithEmailAndPassword(auth, email, password);
             console.log(usercredential.user);
             toast.success("Account created successfully");
+
+            setisSignup(true);
             setEmail("");
             setPassword("");
+
             setTimeout(() => {
-                navigate(`/login`)
-            }, 1000)
+                navigate(`/login`);
+            }, 1000);
 
         } catch (error) {
-            console.error("error", error)
+            console.error("error", error);
+            if (error.code === "auth/email-already-in-use") {
+                toast.error("This email is already registered. Please log in.");
+            } else {
+                toast.error("Something went wrong. Please try again.");
+            }
         }
+    };
 
-    }
     return (
         <>
 
@@ -43,7 +58,7 @@ function SingupRightpart() {
 
                     <form method="POST" className="mt-8" onSubmit={handleSignup}>
                         <div className="space-y-5">
-                            
+
 
                             <div>
                                 <label for="" className="text-base font-medium text-gray-900"> Email address </label>
@@ -78,10 +93,13 @@ function SingupRightpart() {
                             <div>
                                 <button
                                     type="submit"
-                                    className="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 border border-transparent rounded-md bg-gradient-to-r from-fuchsia-600 to-blue-600 focus:outline-none hover:opacity-80 focus:opacity-80 cursor-pointer"
+                                    disabled={isSignup}
+                                    className={`inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 border border-transparent rounded-md bg-gradient-to-r from-fuchsia-600 to-blue-600 focus:outline-none hover:opacity-80 focus:opacity-80 ${isSignup ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
+                                        }`}
                                 >
-                                    Sign up
+                                    {isSignup ? <AiOutlineLoading3Quarters className="animate-spin" /> : "Sign up"}
                                 </button>
+
                             </div>
                         </div>
                     </form>

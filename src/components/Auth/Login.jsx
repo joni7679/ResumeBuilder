@@ -5,12 +5,13 @@ import { FaGoogle, FaFacebookF } from 'react-icons/fa'
 import { toast, ToastContainer } from 'react-toastify'
 import { auth } from '../../firebase/Firebase'
 import { Link, useNavigate } from 'react-router-dom'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import 'react-toastify/dist/ReactToastify.css'
 import Navbar from '../Navbar'
 
 function Login() {
   const [email, setEmail] = useState("")
+  const [islogin, setIsLogin] = useState(false)
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
 
@@ -22,7 +23,7 @@ function Login() {
 
       localStorage.setItem("userData", JSON.stringify(user))
       toast.success("Login successful!")
-
+      setIsLogin(true)
       setTimeout(() => {
         navigate('/dashboard')
       }, 1000)
@@ -41,6 +42,16 @@ function Login() {
       }
     }
   }
+
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
+      toast.success("User signed in with Google!");
+    } catch (error) {
+      console.error("Error signing in with Google:", error.message);
+    }
+  };
 
   return (
     <>
@@ -119,10 +130,13 @@ function Login() {
               <div>
                 <button
                   type="submit"
-                  className="w-full py-3 text-white font-semibold rounded-md bg-gradient-to-r from-fuchsia-600 to-blue-600 hover:opacity-90 transition"
+                  disabled={islogin}
+                  className={`w-full py-3 text-white font-semibold cursor-pointer rounded-md bg-gradient-to-r from-fuchsia-600 to-blue-600 transition ${islogin ? 'opacity-70 cursor-not-allowed' : 'hover:opacity-90'
+                    }`}
                 >
-                  Login Now
+                  {islogin ? <span className="animate-spin">Loading...</span> : "Login Now"}
                 </button>
+
               </div>
             </form>
 
@@ -133,11 +147,11 @@ function Login() {
               <div className="flex-grow h-px bg-gray-300" />
             </div>
             <div className="grid grid-cols-1 gap-4">
-              <button type='button' className="flex cursor-pointer items-center justify-center gap-2 w-full py-3 border border-gray-300 rounded-full bg-white text-sm font-semibold text-gray-700 hover:bg-gray-100">
-                <FaGoogle  className='text-red-500'/> Login with Google
+              <button type='button' onClick={handleGoogleSignIn} className="flex cursor-pointer items-center justify-center gap-2 w-full py-3 border border-gray-300 rounded-full bg-white text-sm font-semibold text-gray-700 hover:bg-gray-100">
+                <FaGoogle className='text-red-500' /> Login with Google
               </button>
               <button type='button' className="flex items-center cursor-pointer justify-center gap-2 w-full py-3 border border-gray-300 rounded-full bg-white text-sm font-semibold text-gray-700 hover:bg-gray-100">
-                <FaFacebookF  className='text-blue-600'/> Login with Facebook
+                <FaFacebookF className='text-blue-600' /> Login with Facebook
               </button>
             </div>
           </div>

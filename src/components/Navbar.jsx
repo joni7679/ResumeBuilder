@@ -8,6 +8,7 @@ function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
     let { user, loading, error } = useContext(AuthContext);
     console.log("user is", user);
+    
 
 
     return (
