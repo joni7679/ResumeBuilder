@@ -24,7 +24,7 @@ function MainContent() {
             <div className="flex min-h-screen transition-all duration-300">
              
                 <div
-                    className={`transition-all duration-500 ease-in-out bg-gray-800 text-white ${open ? 'w-[250px]' : 'w-0'
+                    className={`transition-all duration-500 ease-in-out bg-gray-800 text-white ${open ? '  md:w-[250px]' : 'w-0'
                         } overflow-hidden`}
                 >
                     <Sidebar />

@@ -4,7 +4,7 @@ import TextareaField from './TextareaField';
 import { Bounce, toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function WorkEXperience({ handleSkipExperience, data, setFormData }) {
+function WorkEXperience({ handleSkipExperience, data, setFormData, errors }) {
   const [currentExperience, setCurrentExperience] = useState({
     role: "",
     companyname: "",
@@ -140,7 +140,9 @@ function WorkEXperience({ handleSkipExperience, data, setFormData }) {
         value={currentExperience.description}
         onChange={handleInputChange}
       />
-
+      {
+        errors.experience && <p className='text-sm text-red-500'>{errors.experience}</p>
+      }
       <div className="mt-6 flex justify-between items-center">
         <button
           onClick={handleAdd}

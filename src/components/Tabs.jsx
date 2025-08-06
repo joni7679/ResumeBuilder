@@ -14,6 +14,7 @@ import { LuSave } from "react-icons/lu";
 import { GrPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
 import DownloadResumePreviewPoPUp from "../Dashboard/user/components/DownloadResumePreviewPoPUp";
+import { RxCross1 } from "react-icons/rx";
 const Tabs = () => {
     const [isSubmit, setIsSeubmit] = useState(false);
     const [errors, setErrors] = useState({})
@@ -241,6 +242,9 @@ const Tabs = () => {
     const handlePrev = () => {
         setActiveTab(activeTab - 1);
     }
+    let handleClose = () => {
+        setIsSeubmit(!isSubmit)
+    }
 
     // onsubmit 
     const handleSubmit = () => {
@@ -250,11 +254,29 @@ const Tabs = () => {
         const existingResumes = JSON.parse(localStorage.getItem("allResumes")) || [];
         const updatedResumes = [...existingResumes, formData];
         localStorage.setItem("allResumes", JSON.stringify(updatedResumes));
+        formData({
+            personalinfo: {
+                fullName: "",
+                email: "",
+                jobtitle: "",
+                phone: "",
+                address: "",
+                dob: "",
+                linkedin: "",
+                github: "",
+                portfolio: "",
+                summary: ""
+            },
+            education: [],
+            skills: [],
+            experience: [],
+            projects: [],
+        })
 
-       
+
     }
 
-  
+
 
 
     // useeffect useed to data parse localstorage 
@@ -270,7 +292,6 @@ const Tabs = () => {
         }
     }, []);
 
-    localStorage.setItem("resumeData", JSON.stringify(formData));
 
     return (
         <div className="w-full h-screen overflow-scroll relative">
@@ -291,17 +312,27 @@ const Tabs = () => {
                     </div>
 
                     <div className="left-1/2 transform -translate-x-1/2 -translate-y-1/2   bg-white fixed top-1/2 w-[95%] md:w-[70%] max-h-[90vh] overflow-y-auto rounded-xl shadow-xl p-6   animate-popup z-50">
-                        <ResumeDocument data={formData} />
-                        {/* <Resume data={formData} /> */}
+                        <Resume data={formData} />
                     </div>
+
                 </>
             )}
+
             {
                 isSubmit
                 &&
-                <div className="left-1/2 transform -translate-x-1/2 -translate-y-1/2   bg-white fixed top-1/2 w-[95%] md:w-[70%] max-h-[90vh] overflow-y-auto rounded-xl shadow-xl p-6   animate-popup z-50">
-                    <DownloadResumePreviewPoPUp />
-                </div>
+                (
+                    <>
+
+
+                        <div className="left-1/2 transform -translate-x-1/2 -translate-y-1/2   bg-white fixed top-1/2 w-[95%] md:w-[70%] max-h-[90vh]  rounded-xl shadow-xl p-6   animate-popup z-50">
+
+                            <RxCross1 className="text-2xl  text-gray-950 cursor-pointer absolute right-0 top-[-12%]" onClick={handleClose} />
+
+                            <DownloadResumePreviewPoPUp />
+                        </div>
+                    </>
+                )
             }
 
 

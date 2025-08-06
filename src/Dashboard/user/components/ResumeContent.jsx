@@ -7,10 +7,6 @@ import webbIcon from '../../../assets/world-wide-web.png';
 import emailIcon from '../../../assets/mail.png';
 import pinIcon from '../../../assets/pin.png'
 
-
-
-
-
 const styles = StyleSheet.create({
     page: {
         padding: 30,
@@ -198,11 +194,11 @@ function ResumeContent() {
                     <Text style={[styles.subheading, styles.border, styles.margin]}>EDUCATION</Text>
                     {savedData?.education?.length > 0 ? (
                         savedData.education.map((edu, idx) => {
-                            const { collegename, stream, startdate, endDate } = edu
+                            const { collegename, stream, startdate, enddate } = edu
                             return (
                                 <View key={idx}>
                                     <Text style={styles.text}>{collegename}</Text>
-                                    <Text style={styles.text}>{stream} ({startdate} – {endDate})</Text>
+                                    <Text style={styles.text}>{stream} ({startdate} – {enddate})</Text>
                                 </View>
                             );
                         })
@@ -221,19 +217,19 @@ function ResumeContent() {
                             <Text style={styles.techskill}>{proj.techSkills}</Text>
                             <View style={[styles.itemsCcenter]}>
                                 <View style={styles.item}>
-                                    <Image src={githubIcon} style={styles.icon} />
+                                    
                                     <Link src={proj?.githubRepo} style={styles.link}>
                                         GitHub
                                     </Link>
                                 </View>
                                 <View style={styles.item}>
-                                    <Image src={webbIcon} style={styles.icon} />
+                                   
                                     <Link src={proj?.projectLink} style={styles.link}>
                                         Live Demo
                                     </Link>
                                 </View>
                             </View>
-                            <Text style={styles.jobDesc}>• {proj.projectDescription || 'Project description not added.'}</Text>
+                            <Text style={styles.jobDesc}>{proj.projectDescription || 'Project description not added.'}</Text>
                         </View>
                     )) : (
                         <Text style={styles.text}>No projects listed.</Text>

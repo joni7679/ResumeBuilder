@@ -4,10 +4,7 @@ import ResumeContent from './ResumeContent';
 import DownloadPdf from '../Pages/DownloadPdf';
 
 function DownloadResumePreviewPoPUp() {
-    const [loading, setLoading] = useState(false);
-    const downloadResume = () => {
-        setLoading(true);
-    }
+
 
     return (
         <>
@@ -24,6 +21,7 @@ function DownloadResumePreviewPoPUp() {
                     </div>
                     <div className='flex items-center justify-center mt-3'>
                         <DownloadPdf>
+                            <span className='text-green-700 text-center animate-spin'></span>
                         </DownloadPdf>
                     </div>
 
