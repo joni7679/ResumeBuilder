@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { Suspense } from 'react'
+import Navbar from '../components/Navbar'
+import Herosection from '../components/HeroSection/Herosection'
+import Features from '../components/Features'
+import Footer from '../components/Footer'
 
 function Home() {
   return (
-    <div>Home</div>
+    <>
+      <Suspense fallback={<h1>Loading..........</h1>}>
+        <Navbar />
+        <Herosection />
+        <Features />
+        <Footer />
+      </Suspense>
+    </>
   )
 }
 

@@ -102,68 +102,50 @@ function ResumeContent() {
     return (
         <Document>
             <Page size="A4" style={styles.page}>
-
                 {/* Header */}
                 <View>
                     <Text style={styles.heading}>{savedData?.personalinfo?.fullName || 'Your Name'}</Text>
                     <Text style={[styles.subheading, styles.margin, styles.textAlign]}>{savedData?.personalinfo?.jobtitle || 'Job Title'}</Text>
                 </View>
                 <View style={[styles.flex]}>
-
                     <View style={styles.item}>
                         <Image src={emailIcon} style={styles.icon} />
                         <Text style={styles.text}>{savedData?.personalinfo?.email}</Text>
                     </View>
-
-
                     <View style={styles.item}>
                         <Image src={phoneIcon} style={styles.icon} />
                         <Text style={styles.text}>{savedData?.personalinfo?.phone}</Text>
                     </View>
-
-
                     <View style={styles.item}>
                         <Image src={githubIcon} style={styles.icon} />
                         <Link src={savedData?.personalinfo?.github} style={styles.link}>
                             GitHub
                         </Link>
                     </View>
-
-
                     <View style={styles.item}>
                         <Image src={linkedinIcon} style={styles.icon} />
                         <Link src={savedData?.personalinfo?.linkedin} style={styles.link}>
                             LinkedIn
                         </Link>
                     </View>
-
-
                     <View style={styles.item}>
                         <Image src={webbIcon} style={styles.icon} />
                         <Link src={savedData?.personalinfo?.portfolio} style={styles.link}>
                             Portfolio
                         </Link>
                     </View>
-
-
                     <View style={styles.item}>
                         <Image src={pinIcon} style={styles.icon} />
                         <Text style={styles.text}>{savedData?.personalinfo?.address}</Text>
                     </View>
                 </View>
-
-
-
-
                 <View>
                     <Text style={[styles.subheading, styles.border, styles.margin]}>PROFESSIONAL SUMMARY</Text>
                     <Text style={styles.text}>
                         {savedData?.personalinfo?.summary || 'Add your summary here.'}
                     </Text>
                 </View>
-
-                {/* Work Experience */}   : "",
-
+                {/* Work Experience */} 
                 <View>
                     <Text style={[styles.subheading, styles.border, styles.margin]}>
                         WORK EXPERIENCE
@@ -187,8 +169,6 @@ function ResumeContent() {
                         <Text style={styles.text}>No experience added yet.</Text>
                     )}
                 </View>
-
-
                 {/* Education   */}
                 <View>
                     <Text style={[styles.subheading, styles.border, styles.margin]}>EDUCATION</Text>
@@ -206,37 +186,38 @@ function ResumeContent() {
                         <Text style={styles.text}>No education data provided..</Text>
                     )}
                 </View>
-
                 {/* Projects */}
                 <View>
                     <Text style={[styles.subheading, styles.border, styles.margin]}>PROJECTS</Text>
-                    {savedData?.projects?.length > 0 ? savedData.projects.map((proj, idx) => (
-
-                        <View key={idx}>
-                            <Text style={styles.jobTitle}>{proj.projectTitle}</Text>
-                            <Text style={styles.techskill}>{proj.techSkills}</Text>
-                            <View style={[styles.itemsCcenter]}>
-                                <View style={styles.item}>
-                                    
-                                    <Link src={proj?.githubRepo} style={styles.link}>
-                                        GitHub
-                                    </Link>
+                    {savedData?.projects?.length > 0 ? (
+                        savedData.projects.map((proj, idx) => {
+                            let { projectTitle, techSkills, projectLink, projectDescription } = proj
+                            return (
+                                <View key={idx}>
+                                    <Text style={styles.jobTitle}>{proj.projectTitle}</Text>
+                                    <Text style={styles.techskill}>{proj.techSkills}</Text>
+                                    <View style={[styles.itemsCcenter]}>
+                                        <View style={styles.item}>
+                                            <Link src={proj?.techSkills} style={styles.link}>
+                                                GitHub
+                                            </Link>
+                                        </View>
+                                        <View style={styles.item}>
+                                            <Link src={proj?.projectLink} style={styles.link}>
+                                                Live Demo
+                                            </Link>
+                                        </View>
+                                    </View>
+                                    <Text style={styles.jobDesc}>{proj.projectDescription || 'Project description not added.'}</Text>
                                 </View>
-                                <View style={styles.item}>
-                                   
-                                    <Link src={proj?.projectLink} style={styles.link}>
-                                        Live Demo
-                                    </Link>
-                                </View>
-                            </View>
-                            <Text style={styles.jobDesc}>{proj.projectDescription || 'Project description not added.'}</Text>
-                        </View>
-                    )) : (
-                        <Text style={styles.text}>No projects listed.</Text>
+                            )
+                        })
+                    ) : (
+                        <>
+                            <Text style={styles.text}>No Project data provided..</Text>
+                        </>
                     )}
                 </View>
-
-
                 {/* Technical Skills */}
                 <View>
                     <Text style={[styles.subheading, styles.border, styles.margin]}>TECHNICAL SKILLS</Text>
@@ -246,7 +227,6 @@ function ResumeContent() {
                             : 'No skills listed.'}
                     </Text>
                 </View>
-
             </Page>
         </Document>
     );

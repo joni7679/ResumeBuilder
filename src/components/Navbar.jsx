@@ -8,22 +8,34 @@ import gsap from 'gsap';
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
     const menuRef = useRef(null);
+    const navitems = useRef([]);
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
+        let tl = gsap.timeline()
         if (menuOpen) {
-            gsap.fromTo(
-                menuRef.current,
+            tl.fromTo(menuRef.current,
                 { x: '100%' },
-                { x: '0%', duration: 0.5, ease: 'power3.out' }
-            );
+                { x: '0%', duration: 0.5, ease: 'power1' }
+                , "a");
         } else {
-            gsap.to(menuRef.current, {
+            tl.to(menuRef.current, {
                 x: '100%',
                 duration: 0.5,
-                ease: 'power3.in',
+                ease: 'power1',
             });
         }
+
+        // // navitems.current.forEach((e, i) => {
+        // //     tl.to(e, {
+        // //         scale: 0.4,
+        // //         stagger: 0.2,
+        // //         duration: 0.4,
+        // //         opacity: 0.3
+        // //     }, "a")
+        // })
+
+
     }, [menuOpen]);
 
     return (
@@ -61,14 +73,13 @@ function Navbar() {
                             ) : (
                                 <Link
                                     to={`/dashboard`}
-                                    className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-md shadow"
-                                >
+                                    className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-md shadow">
                                     Go To Dashboard
                                 </Link>
                             )}
                         </div>
 
-                        
+
                         <div className="lg:hidden text-white text-3xl cursor-pointer z-50" onClick={() => setMenuOpen(!menuOpen)}>
                             {menuOpen ? <HiX /> : <HiOutlineMenu />}
                         </div>
@@ -76,18 +87,17 @@ function Navbar() {
                 </div>
             </nav>
 
-          
+            
             <div
                 ref={menuRef}
-                className="fixed top-0 right-0 w-2/3 sm:w-1/2 h-full bg-[#1b1f23] shadow-lg z-40 lg:hidden flex flex-col items-start p-6 gap-6"
-                style={{ transform: 'translateX(100%)' }}
-            >
+                className={`fixed top-[10%] right-0 w-2/3 sm:w-1/2 h-full bg-[#1b1f23] shadow-lg z-40 lg:hidden flex flex-col items-start p-6 gap-6  ${menuOpen ? "activnav" : ""}`}>
                 {navlinkItems.map((navlink, index) => (
                     <Link
+                        ref={(el) => { navitems.current[index] = el }}
                         key={index}
                         to={navlink.path}
                         onClick={() => setMenuOpen(false)}
-                        className="text-gray-200 text-xl hover:text-blue-400 transition duration-200"
+                        className="text-gray-200 text-xl capitalize hover:text-blue-400 transition duration-200"
                     >
                         {navlink.link}
                     </Link>
