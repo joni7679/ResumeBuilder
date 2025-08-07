@@ -19,25 +19,20 @@ function SingupRightpart() {
     const handleSignup = async (e) => {
         e.preventDefault();
         console.log(email, password);
-
         if (!email || !password) {
             toast.error("Please fill in all fields");
             return;
         }
-
         try {
             let usercredential = await createUserWithEmailAndPassword(auth, email, password);
             console.log(usercredential.user);
             toast.success("Account created successfully");
-
             setisSignup(true);
             setEmail("");
             setPassword("");
-
             setTimeout(() => {
-                navigate(`/login`);
+                navigate(`/dashboard`);
             }, 1000);
-
         } catch (error) {
             console.error("error", error);
             if (error.code === "auth/email-already-in-use") {

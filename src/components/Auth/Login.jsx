@@ -20,8 +20,6 @@ function Login() {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password)
       const user = userCredential.user
-
-      localStorage.setItem("userData", JSON.stringify(user))
       toast.success("Login successful!")
       setIsLogin(true)
       setTimeout(() => {

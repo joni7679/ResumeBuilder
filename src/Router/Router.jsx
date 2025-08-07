@@ -1,7 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-
-
 import Error404 from "../components/Error404";
 import MainContent from "../Dashboard/user/components/MainContent";
 import Home from "../Dashboard/user/Pages/Home";
@@ -24,32 +22,19 @@ export let router = createBrowserRouter([
         element: <App />
     },
     {
-        path: "/about",
-        element: <h1>about page</h1>
-    },
-    {
-        path: "/features",
-        element: <h1>features</h1>
-    },
-    {
-        path: "/pricing",
-        element: <h1>princing...</h1>
-    },
-    {
         path: "/signup",
         element: (
             <PublicRoute>
                 <Singup />
             </PublicRoute>
-
         )
     },
     {
         path: "/login",
         element: (
-            <PublicRoute>
+            <PubliceRoute>
                 <Login />
-            </PublicRoute>
+            </PubliceRoute>
         )
     },
     {
@@ -100,7 +85,6 @@ export let router = createBrowserRouter([
                 path: "pdfviwer",
                 element: <PdfViewer />
             }
-
         ]
     },
 
