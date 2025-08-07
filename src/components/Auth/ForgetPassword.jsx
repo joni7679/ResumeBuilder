@@ -1,69 +1,79 @@
-import { sendPasswordResetEmail, TotpSecret } from 'firebase/auth';
 import React, { useState } from 'react'
+import { sendPasswordResetEmail } from 'firebase/auth';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase/Firebase';
 import { toast, ToastContainer } from 'react-toastify';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import Navbar from '../Navbar';
 
 function ForgetPassword() {
     const [email, setEmail] = useState("");
+    const [isLoading, setisLoading] = useState(false);
     const navigate = useNavigate();
 
-    // handleRestPassword
-
-    const handleRestPassword = async (e) => {
+    const handleResetPassword = async (e) => {
         e.preventDefault();
+        const emailRegex = /\S+@\S+\.\S+/;
+
         if (!email) {
             toast.error("Please enter your email");
+            return;
         }
 
+        if (!emailRegex.test(email)) {
+            toast.error("Enter a valid email address");
+            return;
+        }
+        setisLoading(true);
         try {
             await sendPasswordResetEmail(auth, email);
-            toast.success("Password reset email sent to your email");
+            toast.success("Password reset email sent Please Check Your Spam Folder");
             setEmail("");
-            setTimeout(() => {
-                navigate(`/login`)
-            },1000);
-
         } catch (error) {
-            toast.error("Error sending password reset email");
+            toast.error("Error sending reset email");
+        } finally {
+            setisLoading(false);
         }
     }
+
     return (
         <>
+            <Navbar />
             <ToastContainer />
-            <div class="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
-
-                <form method="POST" className="mt-8" onSubmit={handleRestPassword}>
-                    <div className="space-y-5">
-                        <div>
-                            <label for="" class="text-base font-medium text-gray-100"> Email address </label>
-                            <div class="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
-                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <div className="flex justify-center items-center min-h-screen bg-gray-900">
+                <div className="w-full max-w-sm">
+                    <form onSubmit={handleResetPassword} className="bg-gray-800 p-6 rounded shadow-md">
+                        <div className="mb-5">
+                            <label htmlFor="email" className="text-sm font-medium text-gray-100">
+                                Email address
+                            </label>
+                            <div className="relative mt-2 text-gray-400">
+                                <div className="absolute inset-y-0 left-0 flex items-center pl-3">
                                     <MdOutlineAlternateEmail />
                                 </div>
                                 <input
-                                    type="email"
-                                    name="email"
-                                    id="email" value={email} onChange={(e) => setEmail(e.target.value)}
-                                    placeholder="Enter email to get started"
-                                    className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
+                                    type="text"
+                                    id="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="Enter your email"
+                                    className="block w-full py-2 pl-10 pr-4 border rounded-md focus:outline-none focus:border-blue-600"
                                 />
                             </div>
                         </div>
-                        <div>
-                            <button
-                                type="submit"
-                                class="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 border border-transparent rounded-md bg-gradient-to-r from-fuchsia-600 to-blue-600 focus:outline-none hover:opacity-80 focus:opacity-80 cursor-pointer"
-                            >
-                                Send
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                        <button
+                            type="submit"
+                            disabled={isLoading}
+                            className="w-full flex justify-center cursor-pointer items-center gap-2 py-2 px-4 text-white bg-gradient-to-r from-fuchsia-600 to-blue-600 rounded hover:opacity-80 disabled:opacity-50"
+                        >
+                            {isLoading ? <AiOutlineLoading3Quarters className="animate-spin" /> : "Send Reset Email"}
+                        </button>
+                    </form>
+                </div>
             </div>
         </>
     )
 }
 
-export default ForgetPassword
+export default ForgetPassword;

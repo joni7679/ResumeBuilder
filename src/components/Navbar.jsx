@@ -50,7 +50,7 @@ function Navbar() {
                             {navlinkItems.map((navlink, index) => (
                                 <Link
                                     key={index}
-                                    to={navlink.path}
+                                  
                                     className="text-gray-200 capitalize text-lg hover:text-blue-600 transition-all duration-200">
                                     {navlink.link}
                                 </Link>
