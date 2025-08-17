@@ -12,8 +12,6 @@ function Navbar() {
     const navitems = useRef([]);
     const desktopItems = useRef([]);
     const { user } = useContext(AuthContext);
-
-    // Desktop nav animation (on load)
     useGSAP(() => {
         gsap.from(
             desktopItems.current,
@@ -22,7 +20,7 @@ function Navbar() {
         );
     }, []);
 
-    // Mobile menu animation
+    // Mobile menu animation logic here
     useGSAP(() => {
         let tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
@@ -50,10 +48,11 @@ function Navbar() {
 
     return (
         <>
-            <nav className="w-full bg-[#1b1f23] shadow-lg sticky top-0 z-50">
+            <nav className="w-full bg-[#E6EFFC] backdrop-blur-md shadow-xl sticky top-0 z-50 rounded-b-2xl transition-all duration-300">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16 lg:h-20">
-                        <Link to="/" className="text-2xl font-bold text-blue-600">
+                        <Link to="/" className="text-2xl font-extrabold bg-gradient-to-r from-blue-500 via-indigo-500 to-orange-500 bg-clip-text text-transparent flex items-center gap-2">
+                            <svg className="w-7 h-7 text-blue-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none" /><path d="M8 12h8M12 8v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
                             Resume <span className="text-orange-500">Builder</span>
                         </Link>
 
@@ -62,9 +61,10 @@ function Navbar() {
                             {navlinkItems.map((navlink, index) => (
                                 <Link
                                     key={index}
-                                 
                                     ref={(el) => (desktopItems.current[index] = el)}
-                                    className="text-gray-200 capitalize text-lg hover:text-blue-600 transition-all duration-200">
+                                    className="text-gray-600 capitalize text-lg font-medium px-2 py-1 rounded transition-all duration-200 hover:text-blue-500 hover:bg-blue-100/10 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-[#1b1f23]"
+                                   
+                                >
                                     {navlink.link}
                                 </Link>
                             ))}
@@ -77,13 +77,15 @@ function Navbar() {
                                     <Link
                                         ref={(el) => (desktopItems.current[navlinkItems.length] = el)}
                                         to={`/signup`}
-                                        className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-md shadow">
+                                        className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-5 py-2 rounded-md shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                    >
                                         Signup
                                     </Link>
                                     <Link
                                         ref={(el) => (desktopItems.current[navlinkItems.length + 1] = el)}
                                         to={`/login`}
-                                        className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-md shadow">
+                                        className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white px-5 py-2 rounded-md shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                                    >
                                         Login
                                     </Link>
                                 </>
@@ -91,31 +93,40 @@ function Navbar() {
                                 <Link
                                     ref={(el) => (desktopItems.current[navlinkItems.length] = el)}
                                     to={`/dashboard`}
-                                    className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-md shadow">
+                                    className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-5 py-2 rounded-md shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                >
                                     Go To Dashboard
                                 </Link>
                             )}
                         </div>
 
                         {/* Mobile Menu Toggle */}
-                        <div className="lg:hidden text-white text-3xl cursor-pointer z-50" onClick={() => setMenuOpen(!menuOpen)}>
+                        <div className="lg:hidden text-white text-3xl cursor-pointer z-50" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Close menu' : 'Open menu'} tabIndex={0} onKeyDown={e => { if (e.key === 'Enter') setMenuOpen(!menuOpen); }}>
                             {menuOpen ? <HiX /> : <HiOutlineMenu />}
                         </div>
                     </div>
                 </div>
             </nav>
 
+            {/* Mobile menu overlay */}
+            {menuOpen && (
+                <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-opacity duration-300" onClick={() => setMenuOpen(false)} aria-hidden="true"></div>
+            )}
+
             {/* Mobile menu */}
             <div
                 ref={menuRef}
-                className="fixed top-[10%] right-0 w-2/3 sm:w-1/2 h-full bg-[#1b1f23] shadow-lg z-40 lg:hidden flex flex-col items-start p-6 gap-6">
+                className={`fixed top-[10%] right-0 w-2/3 sm:w-1/2 h-full bg-[#1b1f23]/95 backdrop-blur-lg shadow-2xl z-50 lg:hidden flex flex-col items-start p-8 gap-8 rounded-l-2xl border-l border-blue-900 transition-transform duration-500 ${menuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 pointer-events-none'}`}
+                role="menu"
+                aria-label="Mobile navigation menu"
+            >
                 {navlinkItems.map((navlink, index) => (
                     <Link
                         ref={(el) => { navitems.current[index] = el }}
                         key={index}
-                        to={navlink.path}
                         onClick={() => setMenuOpen(false)}
-                        className="text-gray-200 text-xl capitalize hover:text-blue-400 transition duration-200"
+                        className="text-gray-200 text-xl capitalize font-semibold hover:text-blue-400 hover:bg-blue-100/10 px-4 py-2 rounded transition duration-200 w-full text-left focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        role="menuitem"
                     >
                         {navlink.link}
                     </Link>
@@ -126,7 +137,8 @@ function Navbar() {
                             ref={(el) => { navitems.current[navitems.current.length] = el }}
                             to="/signup"
                             onClick={() => setMenuOpen(false)}
-                            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow"
+                            className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-4 py-2 rounded-md shadow w-full text-center font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            role="menuitem"
                         >
                             Signup
                         </Link>
@@ -134,7 +146,8 @@ function Navbar() {
                             ref={(el) => { navitems.current[navitems.current.length] = el }}
                             to="/login"
                             onClick={() => setMenuOpen(false)}
-                            className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md shadow"
+                            className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white px-4 py-2 rounded-md shadow w-full text-center font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                            role="menuitem"
                         >
                             Login
                         </Link>
@@ -144,7 +157,8 @@ function Navbar() {
                         ref={(el) => { navitems.current[navitems.current.length] = el }}
                         to="/dashboard"
                         onClick={() => setMenuOpen(false)}
-                        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow"
+                        className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-4 py-2 rounded-md shadow w-full text-center font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        role="menuitem"
                     >
                         Go To Dashboard
                     </Link>
