@@ -53,8 +53,6 @@ function SingupRightpart() {
 
                     <form method="POST" className="mt-8" onSubmit={handleSignup}>
                         <div className="space-y-5">
-
-
                             <div>
                                 <label for="" className="text-base font-medium text-gray-900"> Email address </label>
                                 <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">

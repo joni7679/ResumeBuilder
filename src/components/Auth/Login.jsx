@@ -72,8 +72,6 @@ function Login() {
             </ul>
           </div>
         </div>
-
-
         <div className="flex items-center justify-center px-6 py-10 w-full lg:w-1/2 bg-gray-900 ">
           <div className="w-full max-w-md">
             <h2 className="text-3xl font-bold text-gray-100 mb-2">Welcome Back</h2>

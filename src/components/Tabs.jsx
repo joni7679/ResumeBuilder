@@ -171,9 +171,6 @@ const Tabs = () => {
         return true;
     }
 
-
-
-
     const tabs = [
         {
             label: "Personal Info",
@@ -275,9 +272,6 @@ const Tabs = () => {
 
 
     }
-
-
-
 
     // useeffect useed to data parse localstorage 
     useEffect(() => {

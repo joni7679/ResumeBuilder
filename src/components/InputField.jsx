@@ -11,7 +11,6 @@ function InputField({ label, type = "text", value, name, onChange, placeholder, 
                     {label}
                 </label>
             )}
-
             <input
                 type={type}
                 name={name}
@@ -22,11 +21,8 @@ function InputField({ label, type = "text", value, name, onChange, placeholder, 
                 onKeyDown={onKeyDown}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-800 transition"
             />
-
             {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
-
         </div>
-
     );
 }
 

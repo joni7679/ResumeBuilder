@@ -45,8 +45,6 @@ function PersonalInfo({ data, setFormData, errors }) {
 
     return (
         <>
-
-
             <h1 className='text-center text-2xl text-black font-bold mb-4'>Personal Info</h1>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">

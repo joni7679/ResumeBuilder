@@ -168,7 +168,6 @@ function WorkEXperience({ handleSkipExperience, data, setFormData, errors }) {
                   <button
                     className="absolute top-2 right-2 text-red-500 hover:text-red-700 font-bold"
                     title="Remove Experience">
-
                   </button>
                   <h4 className="font-semibold text-lg text-blue-700">{exp.role}</h4>
                   <p className="text-md font-medium text-gray-600">{exp.companyname} - {exp.location}</p>

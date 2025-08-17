@@ -32,16 +32,13 @@ const Sidebar = ({ open, setIsOpen }) => {
     // ṭoggle logic here
     const toggleSidebar = (e) => {
         setIsOpen(!open)
-        alert(open)
-
     }
 
     return (
         <>
             <ToastContainer />
-            <aside className="w-64 h-screen bg-[#FAFCFE] shadow-lg p-4 relative overflow-scroll">
+            <aside className=" h-screen sidebar-container bg-[#FAFCFE] shadow-lg p-4 relative overflow-scroll">
                 <MdArrowBackIos onClick={toggleSidebar} className='text-xl cursor-pointer absolute right-[-4%] top-1/2' />
-
                 <div className="flex items-center gap-2 mb-10">
                     <div className="bg-blue-100 p-2 rounded-full">
                         <div className="w-6 h-6 bg-gradient-to-tr from-blue-500 to-blue-700 rounded-full" />
@@ -68,13 +65,10 @@ const Sidebar = ({ open, setIsOpen }) => {
                             <Link
                                 to={item.path}
                                 onClick={() => setActive(index)}
-
-                                className={`mb-4 flex-shrink-0 w-[200px] px-4 py-3 hover:bg-[#E5F0FF] p-3 rounded-md cursor-pointer ${active === index ? "bg-[#E5F0FF]" : ""}`}
-                            >
+                                className={`mb-4 flex-shrink-0 w-[200px] px-4 py-3 hover:bg-[#E5F0FF] p-3 rounded-md cursor-pointer ${active === index ? "bg-[#E5F0FF]" : ""}`}>
                                 <div className="flex items-center gap-2 text-sm font-semibold text-gray-900">
-                                    {Icon && <Icon />}
+                                    {Icon && <Icon className='text-xl' />}
                                     {item.name}
-
                                 </div>
                             </Link>
                         </div>
@@ -82,14 +76,12 @@ const Sidebar = ({ open, setIsOpen }) => {
                 })}
                 <button
                     onClick={backToHome}
-                    className="mt-10 cursor-pointer w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200"
-                >
+                    className="mt-10 cursor-pointer w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
                     Back To Home
                 </button>
                 <button
                     onClick={logOut}
-                    className="mt-10 cursor-pointer w-full bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition duration-200"
-                >
+                    className="mt-10 cursor-pointer w-full bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition duration-200">
                     Log Out
                 </button>
             </aside>

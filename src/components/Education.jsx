@@ -102,8 +102,6 @@ function Education({ data, setFormData, errors }) {
                 onChange={handleInputChange}
                 disabled={education.currentlyStudying}
             />
-
-
             <label className="flex items-center gap-2 mt-3">
                 <input
                     type="checkbox"
@@ -112,10 +110,7 @@ function Education({ data, setFormData, errors }) {
                 />
                 <span className="text-sm text-gray-700">Currently studying here</span>
             </label>
-
-
             {errors.education && <p className='text-red-600 text-sm mt-5'>{errors.education}</p>}
-
             <button
                 onClick={handleAddEducation}
                 type="button"
