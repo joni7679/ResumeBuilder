@@ -48,8 +48,6 @@ const Sidebar = ({ open, setIsOpen }) => {
                     </div>
                     <span className="text-xl font-bold text-black capitalize">resume.bulider</span>
                 </div>
-
-
                 {loading ? (
                     <div className="mb-10 text-gray-400">Loading user...</div>
                 ) : user ? (
@@ -63,8 +61,6 @@ const Sidebar = ({ open, setIsOpen }) => {
                 ) : (
                     <div className="mb-10 text-red-500">No user found</div>
                 )}
-
-
                 {sidebarlinks.map((item, index) => {
                     const Icon = item.icon;
                     return (

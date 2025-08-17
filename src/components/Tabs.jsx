@@ -310,11 +310,9 @@ const Tabs = () => {
                 <>
                     <div onClick={popupBox} className={`fixed top-0 left-0 w-full h-full  ${popup ? "overly" : ""} z-40`}>
                     </div>
-
                     <div className="left-1/2 transform -translate-x-1/2 -translate-y-1/2   bg-white fixed top-1/2 w-[95%] md:w-[70%] max-h-[90vh] overflow-y-auto rounded-xl shadow-xl p-6   animate-popup z-50">
                         <Resume data={formData} />
                     </div>
-
                 </>
             )}
 
@@ -323,8 +321,6 @@ const Tabs = () => {
                 &&
                 (
                     <>
-
-
                         <div className="left-1/2 transform -translate-x-1/2 -translate-y-1/2   bg-white fixed top-1/2 w-[95%] md:w-[70%] max-h-[90vh]  rounded-xl shadow-xl p-6   animate-popup z-50">
 
                             <RxCross1 className="text-2xl  text-gray-950 cursor-pointer absolute right-0 top-[-12%]" onClick={handleClose} />
@@ -334,8 +330,6 @@ const Tabs = () => {
                     </>
                 )
             }
-
-
 
             <button
                 onClick={popupBox}
