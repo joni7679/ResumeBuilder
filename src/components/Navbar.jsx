@@ -5,6 +5,7 @@ import { HiOutlineMenu, HiX } from 'react-icons/hi';
 import { AuthContext } from '../Context/AuthContext';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { ToastContainer } from 'react-toastify';
 
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -48,22 +49,23 @@ function Navbar() {
 
     return (
         <>
-            <nav className="w-full bg-[#E6EFFC] backdrop-blur-md shadow-xl sticky top-0 z-50 rounded-b-2xl transition-all duration-300">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <ToastContainer />
+            <nav className="w-full mx-auto px-4 sm:px-6 lg:px-8  bg-[#E6EFFC] backdrop-blur-md shadow-xl sticky top-0 z-50 rounded-b-2xl transition-all duration-300">
+                <div className="container mx-auto">
                     <div className="flex justify-between items-center h-16 lg:h-20">
                         <Link to="/" className="text-2xl font-extrabold bg-gradient-to-r from-blue-500 via-indigo-500 to-orange-500 bg-clip-text text-transparent flex items-center gap-2">
-                            <svg className="w-7 h-7 text-blue-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none" /><path d="M8 12h8M12 8v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
+                            
                             Resume <span className="text-orange-500">Builder</span>
                         </Link>
 
-                        {/* Desktop Navbar */}
+
                         <div className="hidden lg:flex items-center space-x-10">
                             {navlinkItems.map((navlink, index) => (
                                 <Link
                                     key={index}
                                     ref={(el) => (desktopItems.current[index] = el)}
                                     className="text-gray-600 capitalize text-lg font-medium px-2 py-1 rounded transition-all duration-200 hover:text-blue-500 hover:bg-blue-100/10 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-[#1b1f23]"
-                                   
+
                                 >
                                     {navlink.link}
                                 </Link>
@@ -77,14 +79,14 @@ function Navbar() {
                                     <Link
                                         ref={(el) => (desktopItems.current[navlinkItems.length] = el)}
                                         to={`/signup`}
-                                        className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-5 py-2 rounded-md shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                        className="bg-gradient-to-r from-blue-500text-white px-5 py-2 rounded-md shadow transition-all duration-200 focus:outline-none bg-green-500 focus:ring-2 focus:ring-blue-400"
                                     >
                                         Signup
                                     </Link>
                                     <Link
                                         ref={(el) => (desktopItems.current[navlinkItems.length + 1] = el)}
                                         to={`/login`}
-                                        className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white px-5 py-2 rounded-md shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                                        className="bg-blue-500 text-white px-5 py-2 rounded-md shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400"
                                     >
                                         Login
                                     </Link>

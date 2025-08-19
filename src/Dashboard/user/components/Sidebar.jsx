@@ -14,8 +14,8 @@ const Sidebar = ({ open, setIsOpen }) => {
 
     const logOut = async () => {
         try {
+
             await signOut(auth);
-            localStorage.removeItem("userData");
             toast.success("Logged out successfully");
             setTimeout(() => {
                 navigate(`/`);
@@ -36,7 +36,7 @@ const Sidebar = ({ open, setIsOpen }) => {
 
     return (
         <>
-            <ToastContainer />
+
             <aside className=" h-screen sidebar-container bg-[#FAFCFE] shadow-lg p-4 relative overflow-scroll">
                 <MdArrowBackIos onClick={toggleSidebar} className='text-xl cursor-pointer absolute right-[-4%] top-1/2' />
                 <div className="flex items-center gap-2 mb-10">

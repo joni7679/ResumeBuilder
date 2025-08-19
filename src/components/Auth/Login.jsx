@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { MdOutlineAlternateEmail } from 'react-icons/md'
 import { TbPasswordFingerprint } from 'react-icons/tb'
 import { FaGoogle, FaFacebookF } from 'react-icons/fa'
-import { toast, ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 import { auth } from '../../firebase/Firebase'
 import { Link, useNavigate } from 'react-router-dom'
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
@@ -17,14 +17,23 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault()
+    if (!email) {
+      toast.error("Please enter  email ");
+      return;
+    }
+    else if (!password) {
+      toast.error("Please enter password");
+      return
+    }
+
     try {
+      setIsLogin(true)
       const userCredential = await signInWithEmailAndPassword(auth, email, password)
       const user = userCredential.user
-      toast.success("Login successful!")
-      setIsLogin(true)
-      setTimeout(() => {
-        navigate('/dashboard')
-      }, 1000)
+      toast.success("Login successful!", {
+        autoClose: 2000,
+        onClose: () => navigate('/dashboard')
+      });
     } catch (error) {
       const errorCode = error.code
       if (errorCode === 'auth/invalid-email') {
@@ -54,7 +63,7 @@ function Login() {
   return (
     <>
       <Navbar />
-      <ToastContainer position="top-right" autoClose={2000} theme="colored" />
+
       <div className="flex flex-col lg:flex-row min-h-screen bg-white">
 
         <div className="flex flex-col justify-center px-8 py-16 bg-gradient-to-br from-blue-100 to-purple-200 w-full lg:w-1/2">
@@ -128,8 +137,7 @@ function Login() {
                   type="submit"
                   disabled={islogin}
                   className={`w-full py-3 text-white font-semibold cursor-pointer rounded-md bg-gradient-to-r from-fuchsia-600 to-blue-600 transition ${islogin ? 'opacity-70 cursor-not-allowed' : 'hover:opacity-90'
-                    }`}
-                >
+                    }`}>
                   {islogin ? <span className="animate-spin">Loading...</span> : "Login Now"}
                 </button>
 

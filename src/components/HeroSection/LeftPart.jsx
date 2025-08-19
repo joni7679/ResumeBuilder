@@ -75,17 +75,9 @@ function LeftPart() {
 
             <button
                 onClick={checkUserisLoginIsNot}
-                className="bg-gradient-to-r cursor-pointer from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-3 rounded-lg shadow-lg font-semibold text-lg transition-all duration-300 flex items-center gap-2 group"
+                className="bg-gradient-to-r cursor-pointer bg-blue-500 text-white px-8 py-3 rounded-lg shadow-lg font-semibold text-lg transition-all duration-300 flex items-center gap-2 group"
             >
-                <svg
-                    className="w-5 h-5 text-white group-hover:scale-110 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
+                
                 Build Your Resume Now
             </button>
             <ToastContainer />
