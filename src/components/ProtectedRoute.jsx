@@ -11,11 +11,9 @@ function ProtectedRoute({ children }) {
       navigate("/login");
     }
   }, [user, navigate]);
-
   if (user) {
     return children;
   }
-
   return null;
 }
 

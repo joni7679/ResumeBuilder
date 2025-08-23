@@ -67,8 +67,7 @@ function Projects({ errors, data, setFormData }) {
     const handleAddProject = () => {
         let isValid = validate()
         if (!isValid) return
-
-
+        
         const newProject = {
             id: nanoid(),
             projectTitle: currentProject.projectTitle,
@@ -77,7 +76,6 @@ function Projects({ errors, data, setFormData }) {
             projectLink: currentProject.projectLink,
             githubRepo: currentProject.githubRepo
         }
-       
         // push data logic here
         setFormData(prev => ({
             ...prev,

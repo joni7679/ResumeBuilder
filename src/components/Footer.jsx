@@ -1,10 +1,5 @@
 import React from "react";
-import {
-    FaFacebookF,
-    FaTwitter,
-    FaInstagram,
-    FaLinkedinIn,
-} from "react-icons/fa";
+import { socialLinks } from "../constants/sociallinks";
 
 const Footer = () => {
     return (
@@ -19,18 +14,18 @@ const Footer = () => {
                         Create your resume in a minute, get your dream job in a blink.
                     </p>
                     <div className="flex gap-4 text-xl">
-                        <a href="#" className="text-white hover:text-orange-400 transition-transform transform hover:scale-125 focus:outline-none" aria-label="Facebook">
-                            <FaFacebookF />
-                        </a>
-                        <a href="#" className="text-white hover:text-orange-400 transition-transform transform hover:scale-125 focus:outline-none" aria-label="Twitter">
-                            <FaTwitter />
-                        </a>
-                        <a href="#" className="text-white hover:text-orange-400 transition-transform transform hover:scale-125 focus:outline-none" aria-label="Instagram">
-                            <FaInstagram />
-                        </a>
-                        <a href="#" className="text-white hover:text-orange-400 transition-transform transform hover:scale-125 focus:outline-none" aria-label="LinkedIn">
-                            <FaLinkedinIn />
-                        </a>
+                        {
+                            socialLinks.map((val, index) => {
+                                 const IconItem = val.icon;
+                                return (
+                                    <>
+                                        <a key={index} href="#" className="text-white hover:text-orange-400 transition-transform transform hover:scale-125 focus:outline-none" aria-label={val.icon}>
+                                            <IconItem />
+                                        </a>
+                                    </>
+                                )
+                            })
+                        }
                     </div>
                 </div>
                 <div className="md:px-8 pt-8 md:pt-0 flex flex-col items-start">

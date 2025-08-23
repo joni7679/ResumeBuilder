@@ -24,13 +24,11 @@ function Navbar() {
     // Mobile menu animation logic here
     useGSAP(() => {
         let tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
         if (menuOpen) {
             tl.fromTo(menuRef.current,
                 { x: '100%', y: 100, opacity: 0 },
                 { x: '0%', y: 0, opacity: 1, duration: 0.6 },
             );
-
             tl.fromTo(
                 navitems.current,
                 { y: 50, opacity: 0 },

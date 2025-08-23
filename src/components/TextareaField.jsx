@@ -22,10 +22,8 @@ const TextareaField = ({ label, name, placeholder, value, onChange, error }) => 
         value={value}
         onChange={onChange}
         rows={5}
-
       />
       {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
-
     </div>
   );
 };
