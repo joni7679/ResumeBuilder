@@ -10,10 +10,10 @@ gsap.registerPlugin(SplitText);
 function LeftPart() {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
-
     const headingRef = useRef();
     const subHeadingRef = useRef();
-
+    const sapnText = useRef();
+    const buttonRef = useRef()
     const checkUserisLoginIsNot = () => {
         if (!user) {
             toast.error('Plz Login First');
@@ -22,18 +22,15 @@ function LeftPart() {
             navigate(`dashboard/resume-Marker`);
         }
     };
-
     useGSAP(() => {
         if (!headingRef.current || !subHeadingRef.current) return;
-
-        const splitSub = new SplitText(subHeadingRef.current, { type: 'lines' });
+        const splitSub = new SplitText(subHeadingRef.current, { type: 'lines ' });
         gsap.from(splitSub.lines, {
             duration: 1.2,
             yPercent: 100,
             stagger: 0.08,
             ease: 'expo.out',
         });
-
         const splitHeading = new SplitText(headingRef.current, { type: 'words,chars' });
         gsap.from(splitHeading.chars, {
             duration: 1.5,
@@ -42,45 +39,38 @@ function LeftPart() {
             stagger: 0.05,
             ease: 'expo.out',
         });
-        gsap.from("span", {
-            scale: 0.6,
+        gsap.from(sapnText.current, {
             duration: 1.2,
             yPercent: 100,
             stagger: 0.08,
             ease: 'expo.out',
         })
+        gsap.from(buttonRef.current, {
+            scale: 0.5,
+            duration: 0.6,
+            ease: "expo.out"
+        })
     }, []);
 
     return (
         <div className="space-y-6">
-            <span className="inline-block  bg-blue-100 text-blue-600 font-semibold px-3 py-1 rounded-full text-xs mb-2 animate-fade-in">
+            <span ref={sapnText} className="inline-block  bg-blue-100 text-blue-600 font-semibold px-3 py-1 rounded-full text-xs mb-2 animate-fade-in">
                 Welcome to Resume Builder
             </span>
-
             <h1
                 ref={headingRef}
-                className="text-4xl heading md:text-5xl font-extrabold mb-4 bg-gradient-to-r text-black drop-shadow-lg"
-            >
+                className="text-4xl heading md:text-5xl font-extrabold mb-4  text-black drop-shadow-lg">
                 Build Your Professional Resume
             </h1>
 
-            <p
-                ref={subHeadingRef}
-                className="sub-heading text-gray-500 text-lg md:text-xl mb-8 leading-relaxed"
-            >
+            <p ref={subHeadingRef} className="sub-heading text-gray-500 text-lg md:text-xl mb-8 leading-relaxed">
                 Create a standout resume in minutes with our easy-to-use resume builder.
                 <br />
                 Choose from multiple templates and download your resume as a PDF.
             </p>
-
-            <button
-                onClick={checkUserisLoginIsNot}
-                className="bg-gradient-to-r cursor-pointer bg-blue-500 text-white px-8 py-3 rounded-lg shadow-lg font-semibold text-lg transition-all duration-300 flex items-center gap-2 group"
-            >
-                
+            <button ref={buttonRef} onClick={checkUserisLoginIsNot} className="cursor-pointer bg-blue-500 text-white px-8 py-3 rounded-lg shadow-lg font-semibold text-lg transition-all duration-300 flex items-center gap-2 group">
                 Build Your Resume Now
             </button>
-            <ToastContainer />
         </div>
     );
 }

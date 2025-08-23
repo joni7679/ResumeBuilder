@@ -14,14 +14,12 @@ function Profile() {
             setIsVerifyEmail(true);
         } catch (error) {
             console.error(error);
-
         }
 
     };
 
     return (
         <>
-            <ToastContainer />
             <div className="flex justify-center items-center min-h-screen px-4">
                 <div className="w-full max-w-sm rounded-xl shadow-lg bg-gray-800 text-white p-6">
                     <div className="flex justify-center mb-5">
@@ -29,7 +27,6 @@ function Profile() {
                             <span>{user?.displayName|| "U"}</span>
                         </div>
                     </div>
-
                     <div className="space-y-3">
                         <p>
                             <span className="font-semibold">User Name:</span> {user?.displayName || "N/A"}

@@ -313,22 +313,17 @@ const Tabs = () => {
             {
                 isSubmit
                 &&
-                (
-                    <>
-                        <div className="left-1/2 transform -translate-x-1/2 -translate-y-1/2   bg-white fixed top-1/2 w-[95%] md:w-[70%] max-h-[90vh]  rounded-xl shadow-xl p-6   animate-popup z-50">
-
-                            <RxCross1 className="text-2xl  text-gray-950 cursor-pointer absolute right-0 top-[-12%]" onClick={handleClose} />
-
-                            <DownloadResumePreviewPoPUp />
-                        </div>
-                    </>
+                (<>
+                    <div className="left-1/2 transform -translate-x-1/2 -translate-y-1/2   bg-white fixed top-1/2 w-[95%] md:w-[70%] max-h-[90vh]  rounded-xl shadow-xl p-6   animate-popup z-50">
+                        <RxCross1 className="text-2xl  text-gray-950 cursor-pointer absolute right-0 top-[-12%]" onClick={handleClose} />
+                        <DownloadResumePreviewPoPUp />
+                    </div>
+                </>
                 )
             }
-
             <button
                 onClick={popupBox}
-                className="flex cursor-pointer duration-300 ease-in items-center gap-2 px-5 py-3 rounded-md bg-blue-700 text-white mt-4"
-            >
+                className="flex cursor-pointer duration-300 ease-in items-center gap-2 px-5 py-3 rounded-md bg-blue-700 text-white mt-4">
                 {!popup ? (
                     <>
                         <FaEye className="text-xl" />
@@ -341,8 +336,6 @@ const Tabs = () => {
                     </>
                 )}
             </button>
-
-
             <div className="w-full p-4">
                 <div className="w-full bg-white rounded-xl p-4">
                     <div className="w-full flex flex-row gap-4 overflow-x-auto scrollbar-hide p-4">
@@ -353,8 +346,7 @@ const Tabs = () => {
                                 className={`flex-shrink-0 w-[200px] px-4 py-3 text-left cursor-pointer text-sm font-medium rounded-2xl border transition-all duration-300 ${activeTab === index
                                     ? "bg-[#E5F0FF] text-black border-blue-400"
                                     : "bg-[#FAFCFE] text-gray-700 border-gray-200 hover:bg-blue-50"
-                                    }`}
-                            >
+                                    }`}>
                                 {tab.label}
                             </button>
                         ))}
@@ -368,10 +360,7 @@ const Tabs = () => {
 
                     {activeTab === tabs.length - 1 && (
                         <div className="mt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-
-                            <button
-                                onClick={handleSubmit}
-                                className="w-full md:w-auto px-6 py-3 flex items-center justify-center gap-2 rounded-xl bg-green-600 hover:bg-green-700 text-white font-medium shadow-md transition duration-300">
+                            <button onClick={handleSubmit} className="w-full md:w-auto px-6 py-3 flex items-center justify-center gap-2 rounded-xl bg-green-600 hover:bg-green-700 text-white font-medium shadow-md transition duration-300">
                                 <LuSave className="inline-block" />
                                 <span className="mr-2">
                                     Save & Submit
@@ -382,11 +371,8 @@ const Tabs = () => {
                 </div>
 
                 <div className="mt-6 w-full flex items-center justify-between gap-4">
-
                     {activeTab > 0 && (
-                        <button
-                            onClick={handlePrev}
-                            className="w-full md:w-1/2 flex items-center justify-center gap-3 cursor-pointer px-6 py-3 rounded-xl bg-blue-800 text-white font-medium shadow-md transition duration-300 hover:bg-blue-900">
+                        <button onClick={handlePrev} className="w-full md:w-1/2 flex items-center justify-center gap-3 cursor-pointer px-6 py-3 rounded-xl bg-blue-800 text-white font-medium shadow-md transition duration-300 hover:bg-blue-900">
                             <GrPrevious />
                             Prev
                         </button>

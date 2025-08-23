@@ -15,18 +15,16 @@ function ForgetPassword() {
     const handleResetPassword = async (e) => {
         e.preventDefault();
         const emailRegex = /\S+@\S+\.\S+/;
-
         if (!email) {
             toast.error("Please enter your email");
             return;
         }
-
         if (!emailRegex.test(email)) {
             toast.error("Enter a valid email address");
             return;
         }
-        setisLoading(true);
         try {
+            setisLoading(true);
             await sendPasswordResetEmail(auth, email);
             toast.success("Password reset email sent Please Check Your Spam Folder");
             setEmail("");
@@ -52,21 +50,12 @@ function ForgetPassword() {
                                 <div className="absolute inset-y-0 left-0 flex items-center pl-3">
                                     <MdOutlineAlternateEmail />
                                 </div>
-                                <input
-                                    type="text"
-                                    id="email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
+                                <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)}
                                     placeholder="Enter your email"
-                                    className="block w-full py-2 pl-10 pr-4 border rounded-md focus:outline-none focus:border-blue-600"
-                                />
+                                    className="block w-full py-2 pl-10 pr-4 border rounded-md focus:outline-none focus:border-blue-600" />
                             </div>
                         </div>
-                        <button
-                            type="submit"
-                            disabled={isLoading}
-                            className="w-full flex justify-center cursor-pointer items-center gap-2 py-2 px-4 text-white bg-gradient-to-r from-fuchsia-600 to-blue-600 rounded hover:opacity-80 disabled:opacity-50"
-                        >
+                        <button type="submit" disabled={isLoading} className="w-full flex justify-center cursor-pointer items-center gap-2 py-2 px-4 text-white bg-gradient-to-r from-fuchsia-600 to-blue-600 rounded hover:opacity-80 disabled:opacity-50">
                             {isLoading ? <AiOutlineLoading3Quarters className="animate-spin" /> : "Send Reset Email"}
                         </button>
                     </form>

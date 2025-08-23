@@ -16,7 +16,7 @@ function Navbar() {
     useGSAP(() => {
         gsap.from(
             desktopItems.current,
-            { yPercent: -100, opacity: 0.0, },
+            { yPercent: -100, opacity: 0.3, ease: "expo.out" },
 
         );
     }, []);
@@ -54,24 +54,15 @@ function Navbar() {
                 <div className="container mx-auto">
                     <div className="flex justify-between items-center h-16 lg:h-20">
                         <Link to="/" className="text-2xl font-extrabold bg-gradient-to-r from-blue-500 via-indigo-500 to-orange-500 bg-clip-text text-transparent flex items-center gap-2">
-                            
                             Resume <span className="text-orange-500">Builder</span>
                         </Link>
-
-
                         <div className="hidden lg:flex items-center space-x-10">
                             {navlinkItems.map((navlink, index) => (
-                                <Link
-                                    key={index}
-                                    ref={(el) => (desktopItems.current[index] = el)}
-                                    className="text-gray-600 capitalize text-lg font-medium px-2 py-1 rounded transition-all duration-200 hover:text-blue-500 hover:bg-blue-100/10 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-[#1b1f23]"
-
-                                >
+                                <Link key={index} ref={(el) => (desktopItems.current[index] = el)} className="text-gray-600 capitalize text-lg font-medium px-2 py-1 rounded transition-all duration-200 hover:text-blue-500 hover:bg-blue-100/10 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-[#1b1f23]">
                                     {navlink.link}
                                 </Link>
                             ))}
                         </div>
-
                         {/* Desktop Auth Buttons */}
                         <div className="hidden lg:flex items-center gap-3">
                             {!user ? (
@@ -79,8 +70,7 @@ function Navbar() {
                                     <Link
                                         ref={(el) => (desktopItems.current[navlinkItems.length] = el)}
                                         to={`/signup`}
-                                        className="bg-gradient-to-r from-blue-500text-white px-5 py-2 rounded-md shadow transition-all duration-200 focus:outline-none bg-green-500 focus:ring-2 focus:ring-blue-400"
-                                    >
+                                        className="bg-gradient-to-r from-blue-500text-white px-5 py-2 rounded-md shadow transition-all duration-200 focus:outline-none bg-green-500 focus:ring-2 focus:ring-blue-400">
                                         Signup
                                     </Link>
                                     <Link
@@ -136,16 +126,14 @@ function Navbar() {
                 {!user ? (
                     <>
                         <Link
-                            ref={(el) => { navitems.current[navitems.current.length] = el }}
                             to="/signup"
                             onClick={() => setMenuOpen(false)}
-                            className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-4 py-2 rounded-md shadow w-full text-center font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            role="menuitem"
-                        >
+                            className="bg-green-500 text-white px-4 py-2 rounded-md shadow w-full text-center font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            role="menuitem">
                             Signup
                         </Link>
                         <Link
-                            ref={(el) => { navitems.current[navitems.current.length] = el }}
+
                             to="/login"
                             onClick={() => setMenuOpen(false)}
                             className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white px-4 py-2 rounded-md shadow w-full text-center font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400"
@@ -156,7 +144,7 @@ function Navbar() {
                     </>
                 ) : (
                     <Link
-                        ref={(el) => { navitems.current[navitems.current.length] = el }}
+
                         to="/dashboard"
                         onClick={() => setMenuOpen(false)}
                         className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-4 py-2 rounded-md shadow w-full text-center font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
