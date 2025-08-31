@@ -4,12 +4,9 @@ import { AuthContext } from '../Context/AuthContext';
 
 function PublicRoute({ children }) {
   const { user } = useContext(AuthContext);
-
   if (user) {
     return <Navigate to="/" replace />;
   }
-
-
   return children;
 }
 

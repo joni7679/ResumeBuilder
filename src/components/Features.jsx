@@ -46,7 +46,7 @@ const Features = () => {
                     start: "top 80%",
                     scrub: 2
                 },
-                duration: 1,
+                duration: 0.5,
                 yPercent: 100,
                 opacity: 0,
                 stagger: 0.1,
@@ -77,13 +77,10 @@ const Features = () => {
 
     return (
         <section className="relative py-24  px-4 sm:px-6 lg:px-8 text-center bg-[#F7FBFF] overflow-hidden">
-
             <div className="container mx-auto">
                 <h2
                     ref={titleRef}
-                    className="text-4xl features-text font-extrabold mb-14 text-black"
-                    
-                >
+                    className="text-4xl features-text font-extrabold mb-14 text-black">
                     Powerful Features
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 relative z-10">
@@ -92,9 +89,7 @@ const Features = () => {
                             key={index}
                             ref={(el) => (cardsRef.current[index] = el)}
                             className="group bg-white/60 backdrop-blur-lg hover:bg-white/90 hover:shadow-2xl shadow-lg p-8 rounded-3xl transition-all duration-300 transform hover:-translate-y-2 border border-blue-100 relative overflow-hidden"
-                            style={{ boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)' }}
-                        >
-
+                            style={{ boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)' }}>
                             <span className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-blue-400 group-hover:animate-border-shine pointer-events-none"></span>
                             <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-blue-100 via-purple-100 to-white text-blue-600 text-3xl shadow-md mx-auto mb-5 group-hover:scale-110 transition-transform duration-300">
                                 {feature.icon}
@@ -108,11 +103,7 @@ const Features = () => {
                         </div>
                     ))}
                 </div>
-
             </div>
-
-
-
         </section>
     );
 };

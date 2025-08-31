@@ -3,7 +3,6 @@ import React from 'react'
 function Skills({ data }) {
     return (
         <>
-
             <div className="w-full mx-w-md mx-auto  p-6 shadow-lg rounded-2xl mt-5">
                 <h2 className="text-2xl font-bold mb-4 text-black">Skills </h2>
                 <div className="flex flex-wrap gap-3">
@@ -12,8 +11,7 @@ function Skills({ data }) {
                         data.skills.map((skill, index) => (
                             <span
                                 key={index}
-                                className="px-4 py-1 text-sm border border-gray-300 rounded-full bg-white text-gray-800 hover:bg-gray-100 transition"
-                            >
+                                className="px-4 py-1 text-sm border border-gray-300 rounded-full bg-white text-gray-800 hover:bg-gray-100 transition">
                                 {skill}
                             </span>
                         ))
@@ -22,8 +20,6 @@ function Skills({ data }) {
                         + Add New Skill
                     </button>
                 </div>
-
-
             </div>
         </>
     )
