@@ -58,7 +58,6 @@ function RightPart() {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </>

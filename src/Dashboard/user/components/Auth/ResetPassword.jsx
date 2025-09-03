@@ -6,9 +6,9 @@ function ResetPassword() {
     const resetPassword = async (e) => {
         e.preventDefault();
         try {
-            
+
         } catch (error) {
-            
+
         }
 
     }
@@ -16,7 +16,6 @@ function ResetPassword() {
         <>
             <div className="container">
                 <div class="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
-
                     <form method="POST" className="mt-8" onSubmit={resetPassword}>
                         <div className="space-y-5">
                             <div>
@@ -37,9 +36,8 @@ function ResetPassword() {
                             <div>
                                 <button
                                     type="submit"
-                                    class="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 border border-transparent rounded-md bg-gradient-to-r from-fuchsia-600 to-blue-600 focus:outline-none hover:opacity-80 focus:opacity-80 cursor-pointer"
-                                >
-                                        Send Reset Link
+                                    class="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 border border-transparent rounded-md bg-gradient-to-r from-fuchsia-600 to-blue-600 focus:outline-none hover:opacity-80 focus:opacity-80 cursor-pointer">
+                                    Send Reset Link
                                 </button>
                             </div>
                         </div>

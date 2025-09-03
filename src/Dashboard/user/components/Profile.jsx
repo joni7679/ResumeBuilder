@@ -19,7 +19,6 @@ function Profile() {
         } catch (error) {
             console.error(error);
         }
-
     };
 
     return (
@@ -70,7 +69,6 @@ function Profile() {
                     </div>
                 </div>
             </div >
-
         </>
     );
 }

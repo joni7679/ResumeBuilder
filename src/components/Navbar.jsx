@@ -72,15 +72,14 @@ function Navbar() {
                             ) : (
                                 <Link
                                     to={`/dashboard`}
-                                    className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-5 py-2 rounded-md shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                                >
+                                    className="bg-gradient-to-r from-blue-500  hover:to-purple-600 text-white px-5 py-2 rounded-md shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
                                     Go To Dashboard
                                 </Link>
                             )}
                         </div>
                         {/*mobile taoggle menu */}
                         <div className="lg:hidden text-white text-3xl cursor-pointer z-50" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Close menu' : 'Open menu'} tabIndex={0} onKeyDown={e => { if (e.key === 'Enter') setMenuOpen(!menuOpen); }}>
-                            {menuOpen ? <HiX /> : <HiOutlineMenu />}
+                            {menuOpen ? <HiX className='text-3xl text-black' /> : <HiOutlineMenu className='text-3xl text-black' />}
                         </div>
                     </div>
                 </div>
@@ -103,8 +102,7 @@ function Navbar() {
                         key={index}
                         onClick={() => setMenuOpen(false)}
                         className="text-gray-200 text-xl capitalize font-semibold hover:text-blue-400 hover:bg-blue-100/10 px-4 py-2 rounded transition duration-200 w-full text-left focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        role="menuitem"
-                    >
+                        role="menuitem">
                         {navlink.link}
                     </Link>
                 ))}
@@ -120,9 +118,8 @@ function Navbar() {
                         <Link
                             to="/login"
                             onClick={() => setMenuOpen(false)}
-                            className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white px-4 py-2 rounded-md shadow w-full text-center font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400"
-                            role="menuitem"
-                        >
+                            className=" bg-orange-500  text-white px-4 py-2 rounded-md shadow w-full text-center font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                            role="menuitem">
                             Login
                         </Link>
                     </>

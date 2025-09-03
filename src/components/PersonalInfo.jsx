@@ -12,7 +12,6 @@ function PersonalInfo({ data, setFormData, errors }) {
             let corrected = await spellCheck(data.summary);
             setCorrectedText(corrected);
             console.log(corrected);
-
             setFormData(prev => ({
                 ...prev,
                 personalinfo: {
@@ -31,7 +30,6 @@ function PersonalInfo({ data, setFormData, errors }) {
     // oninputchange
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-
         setFormData(prev => ({
             ...prev,
             personalinfo: {
@@ -40,8 +38,6 @@ function PersonalInfo({ data, setFormData, errors }) {
             }
         }));
     };
-
-
 
     return (
         <>
@@ -53,7 +49,6 @@ function PersonalInfo({ data, setFormData, errors }) {
                     onChange={handleInputChange}
                     error={errors.fullName}
                 />
-
 
                 <InputField type='text' name="jobtitle" label="Jobtitle" placeholder="Enter Your Job Title Here..."
                     value={data.jobtitle}
@@ -105,26 +100,19 @@ function PersonalInfo({ data, setFormData, errors }) {
                     value={data.portfolio}
                     onChange={handleInputChange}
                     error={errors.portfolio}
-
                 />
                 <div>
                     <TextareaField name='summary' label="Professional Summary" placeholder="A brief summary of your professional background and goals"
                         value={data.summary}
                         onChange={handleInputChange}
                         error={errors.summary}
-
                     />
                     <button onClick={handleCheck} disabled={loading} className={`mt-3 cursor-pointer px-4 py-2 rounded-md transition-all ${loading ? "bg-blue-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700 text-white"}`}
                     >
                         {loading ? "Checking Spelling..." : "Check Spelling"}
                     </button>
                 </div>
-
-
             </div>
-
-
-
         </>
     );
 }
